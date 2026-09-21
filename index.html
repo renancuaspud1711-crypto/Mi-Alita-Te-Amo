@@ -1,593 +1,244 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width,
-initial-scale=1.0,
-maximum-scale=1.0,
-user-scalable=no">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Para mi princesa 🌻</title>
 
-
 <style>
-
-/* =====================================================
-   CONFIGURACIÓN GENERAL
-===================================================== */
-
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
 
-html,
-body{
+html,body{
     width:100%;
     height:100%;
     overflow:hidden;
-    background:#020008;
-    font-family:Georgia,serif;
 }
 
 body{
+    background:#020008;
+    color:white;
+    font-family:Georgia,serif;
     touch-action:manipulation;
 }
 
-
-/* =====================================================
-   UNIVERSO
-===================================================== */
-
-#scene{
-
+/* FONDO */
+#space{
     position:fixed;
     inset:0;
-
     overflow:hidden;
-
     background:
-
-    radial-gradient(
-        circle at 50% 48%,
-        rgba(110,30,180,.30),
-        transparent 32%
-    ),
-
-    radial-gradient(
-        circle at 15% 25%,
-        rgba(30,80,190,.22),
-        transparent 30%
-    ),
-
-    radial-gradient(
-        circle at 85% 75%,
-        rgba(210,40,150,.20),
-        transparent 30%
-    ),
-
-    #020008;
+        radial-gradient(circle at 50% 50%,
+        rgba(120,30,190,.35),
+        transparent 35%),
+        radial-gradient(circle at 20% 20%,
+        rgba(30,80,180,.2),
+        transparent 35%),
+        #020008;
 }
 
-
-/* =====================================================
-   ESTRELLAS
-===================================================== */
-
-#stars{
-
-    position:absolute;
-    inset:0;
-}
-
+/* ESTRELLAS */
 .star{
-
     position:absolute;
-
-    border-radius:50%;
-
+    width:2px;
+    height:2px;
     background:white;
-
-    box-shadow:
-    0 0 6px white;
-
-    animation:
-    twinkle 2s
-    infinite
-    alternate;
+    border-radius:50%;
+    box-shadow:0 0 7px white;
+    animation:brillo 2s infinite alternate;
 }
 
-@keyframes twinkle{
-
+@keyframes brillo{
     from{
-        opacity:.15;
+        opacity:.2;
         transform:scale(.5);
     }
-
     to{
         opacity:1;
         transform:scale(1.4);
     }
 }
 
-
-/* =====================================================
-   NEBULOSA
-===================================================== */
-
+/* NEBULOSA */
 .nebula{
-
     position:absolute;
-
-    width:90vmax;
-    height:70vmax;
-
+    width:100vmax;
+    height:75vmax;
     left:50%;
     top:50%;
-
-    transform:
-    translate(-50%,-50%);
-
+    transform:translate(-50%,-50%);
     border-radius:50%;
-
     background:
-
-    radial-gradient(
-        ellipse,
-        rgba(255,70,190,.18),
-        rgba(70,30,220,.15),
-        transparent 70%
-    );
-
+        radial-gradient(
+            ellipse,
+            rgba(255,80,190,.18),
+            rgba(60,30,220,.15),
+            transparent 70%
+        );
     filter:blur(35px);
-
-    animation:
-    nebulaMove
-    12s
-    ease-in-out
-    infinite
-    alternate;
+    animation:nebulosa 12s ease-in-out infinite alternate;
 }
 
-@keyframes nebulaMove{
-
+@keyframes nebulosa{
     to{
-
         transform:
-        translate(-50%,-50%)
-        rotate(15deg)
-        scale(1.2);
+            translate(-50%,-50%)
+            rotate(15deg)
+            scale(1.2);
     }
 }
 
-
-/* =====================================================
-   GALAXIA
-===================================================== */
-
+/* GALAXIA */
 #galaxy{
-
     position:absolute;
-
     left:50%;
     top:50%;
-
-    width:2px;
-    height:2px;
-
-    transform:
-    translate(-50%,-50%);
-
-    animation:
-    galaxyRotate
-    20s
-    linear
-    infinite;
-}
-
-@keyframes galaxyRotate{
-
-    to{
-
-        transform:
-        translate(-50%,-50%)
-        rotate(360deg);
-    }
+    width:1px;
+    height:1px;
+    animation:giro 20s linear infinite;
 }
 
 .orbitStar{
-
     position:absolute;
-
     width:3px;
     height:3px;
-
     border-radius:50%;
-
-    background:#ffeeb0;
-
-    box-shadow:
-    0 0 8px #ffd45a;
+    background:#ffe68a;
+    box-shadow:0 0 8px #ffd44d;
 }
 
-
-/* =====================================================
-   AGUJERO NEGRO
-===================================================== */
-
-.blackhole{
-
-    position:absolute;
-
-    left:50%;
-    top:50%;
-
-    width:125px;
-    height:125px;
-
-    transform:
-    translate(-50%,-50%);
-
-    border-radius:50%;
-
-    background:#000;
-
-    z-index:4;
-
-    box-shadow:
-
-    0 0 25px #ffd04d,
-
-    0 0 65px #ff7200,
-
-    0 0 110px
-    rgba(255,100,0,.4);
-}
-
-.blackhole::before{
-
-    content:"";
-
-    position:absolute;
-
-    inset:-32px;
-
-    border-radius:50%;
-
-    border:7px solid transparent;
-
-    border-top-color:#ffe56b;
-
-    border-right-color:#ff7200;
-
-    animation:
-    spin 2s
-    linear
-    infinite;
-}
-
-.blackhole::after{
-
-    content:"";
-
-    position:absolute;
-
-    inset:-52px;
-
-    border-radius:50%;
-
-    border:5px solid transparent;
-
-    border-bottom-color:#ffd65a;
-
-    border-left-color:#ff7700;
-
-    animation:
-    spin 4s
-    linear
-    infinite reverse;
-}
-
-@keyframes spin{
-
+@keyframes giro{
     to{
         transform:rotate(360deg);
     }
 }
 
-
-/* =====================================================
-   FLORES FLOTANTES
-===================================================== */
-
-#flowers{
-
+/* AGUJERO NEGRO */
+.blackhole{
     position:absolute;
+    left:50%;
+    top:50%;
+    width:105px;
+    height:105px;
+    transform:translate(-50%,-50%);
+    border-radius:50%;
+    background:#000;
+    z-index:3;
 
+    box-shadow:
+        0 0 25px #ffd84d,
+        0 0 65px #ff7200,
+        0 0 110px rgba(255,100,0,.35);
+}
+
+.blackhole::before{
+    content:"";
+    position:absolute;
+    inset:-28px;
+    border-radius:50%;
+    border:6px solid transparent;
+    border-top-color:#ffe56b;
+    border-right-color:#ff7200;
+    animation:giro 2s linear infinite;
+}
+
+/* FLORES */
+#flowers{
+    position:absolute;
     inset:0;
-
-    z-index:8;
-
     pointer-events:none;
+    z-index:8;
 }
 
 .flower{
-
     position:absolute;
-
     opacity:0;
-
-    transform:
-    translateY(50px)
-    scale(.1);
-
-    animation:
-    flowerGrow
-    1.8s
-    cubic-bezier(.2,.8,.2,1)
-    forwards;
-
-    filter:
-    drop-shadow(
-        0 0 9px
-        rgba(255,220,50,.8)
-    );
+    transform:scale(.1);
+    animation:aparecerFlor 1.5s forwards;
+    filter:drop-shadow(0 0 10px #ffd83d);
 }
 
-@keyframes flowerGrow{
-
-    60%{
-        opacity:1;
-    }
-
-    100%{
-
-        opacity:1;
-
-        transform:
-        translateY(0)
-        scale(1);
-    }
-}
-
-
-/* =====================================================
-   FLORES DEL SUELO
-===================================================== */
-
-#groundFlowers{
-
-    position:absolute;
-
-    left:0;
-    bottom:0;
-
-    width:100%;
-    height:23%;
-
-    z-index:7;
-
-    pointer-events:none;
-}
-
-.stem{
-
-    position:absolute;
-
-    bottom:0;
-
-    width:4px;
-
-    background:
-    linear-gradient(
-        #54a84b,
-        #173b22
-    );
-
-    border-radius:
-    5px 5px 0 0;
-
-    transform-origin:bottom;
-
-    animation:
-    stemGrow
-    2s
-    ease-out
-    forwards;
-}
-
-@keyframes stemGrow{
-
-    from{
-        height:0;
-    }
-
+@keyframes aparecerFlor{
     to{
-        height:var(--h);
+        opacity:1;
+        transform:scale(1);
     }
 }
 
-.gflower{
-
-    position:absolute;
-
-    bottom:var(--h);
-
-    transform:
-    translate(-50%,50%)
-    scale(0);
-
-    animation:
-    flowerOpen
-    1.3s
-    .8s
-    ease-out
-    forwards;
-
-    filter:
-    drop-shadow(
-        0 0 8px #ffd83d
-    );
-}
-
-@keyframes flowerOpen{
-
-    to{
-
-        transform:
-        translate(-50%,50%)
-        scale(1);
-    }
-}
-
-
-/* =====================================================
-   PANTALLA INICIAL
-===================================================== */
-
+/* PANTALLA DE INICIO */
 #start{
-
     position:fixed;
-
     inset:0;
-
     z-index:100;
-
     display:flex;
-
     flex-direction:column;
-
     justify-content:center;
-
     align-items:center;
-
     text-align:center;
 
-    color:white;
-
     background:
+        radial-gradient(
+            circle,
+            rgba(50,10,90,.98),
+            #000008
+        );
 
-    radial-gradient(
-        circle,
-        rgba(45,10,80,.95),
-        rgba(0,0,8,.99)
-    );
-
-    transition:
-    opacity 1.2s ease;
+    cursor:pointer;
+    transition:opacity 1s;
 }
 
 #start.hide{
-
     opacity:0;
-
     pointer-events:none;
 }
 
 .startFlower{
-
     font-size:95px;
-
-    filter:
-    drop-shadow(
-        0 0 25px #ffd83d
-    );
-
-    animation:
-    flowerPulse
-    2s
-    infinite;
+    animation:pulso 1.7s infinite;
+    filter:drop-shadow(0 0 25px #ffd83d);
 }
 
-@keyframes flowerPulse{
-
-    0%,
-    100%{
-        transform:scale(1);
-    }
-
+@keyframes pulso{
     50%{
         transform:scale(1.15);
     }
 }
 
 #start h1{
-
-    margin-top:20px;
-
     width:90%;
-
-    font-size:
-    clamp(
-        24px,
-        7vw,
-        42px
-    );
-
-    text-shadow:
-    0 0 18px #dca7ff;
+    margin-top:20px;
+    font-size:clamp(25px,7vw,44px);
+    text-shadow:0 0 18px #dca7ff;
 }
 
 #start p{
-
     margin-top:18px;
-
     font-size:18px;
-
     letter-spacing:2px;
-
-    opacity:.7;
-
-    animation:
-    startText
-    1.8s
-    infinite
-    alternate;
+    animation:parpadeo 1.5s infinite alternate;
 }
 
-@keyframes startText{
-
+@keyframes parpadeo{
     to{
-        opacity:1;
+        opacity:.35;
     }
 }
 
-
-/* =====================================================
-   MENSAJE PRINCIPAL
-===================================================== */
-
+/* TITULO */
 #intro{
-
     position:absolute;
-
     z-index:20;
-
     top:8%;
-
     left:50%;
-
     width:94%;
-
-    transform:
-    translateX(-50%);
-
-    color:white;
-
+    transform:translateX(-50%);
     text-align:center;
-
     opacity:0;
-
-    transition:
-    opacity 2s;
-
-    text-shadow:
-    0 0 12px white;
+    transition:opacity 1.5s;
+    text-shadow:0 0 12px white;
 }
 
 #intro.show{
@@ -595,158 +246,134 @@ body{
 }
 
 #intro h2{
-
-    font-size:
-    clamp(
-        27px,
-        8vw,
-        52px
-    );
+    font-size:clamp(25px,7vw,48px);
 }
 
 #intro p{
-
     margin-top:10px;
-
-    font-size:
-    clamp(
-        15px,
-        4vw,
-        20px
-    );
+    font-size:clamp(14px,4vw,20px);
 }
 
-
-/* =====================================================
-   TEXTO DE AYUDA
-===================================================== */
-
+/* AYUDA */
 #hint{
-
     position:absolute;
-
     z-index:20;
-
     bottom:10%;
-
     left:50%;
-
     width:90%;
-
-    transform:
-    translateX(-50%);
-
-    color:white;
-
+    transform:translateX(-50%);
     text-align:center;
-
     opacity:0;
-
     transition:1s;
-
-    font-size:16px;
 }
 
 #hint.show{
-    opacity:.9;
+    opacity:1;
 }
 
-
-/* =====================================================
-   SOBRE
-===================================================== */
-
+/* SOBRE */
 #envelopeWrap{
-
     position:absolute;
-
     z-index:40;
-
     left:50%;
     top:55%;
 
     transform:
-    translate(-50%,-50%)
-    scale(.1);
+        translate(-50%,-50%)
+        scale(.1);
 
     opacity:0;
-
     pointer-events:none;
-
     transition:1s;
 }
 
 #envelopeWrap.show{
-
     transform:
-    translate(-50%,-50%)
-    scale(1);
+        translate(-50%,-50%)
+        scale(1);
 
     opacity:1;
-
     pointer-events:auto;
 }
 
 .envelope{
-
     position:relative;
-
-    width:
-    min(
-        330px,
-        82vw
-    );
-
+    width:min(330px,82vw);
     height:220px;
-
     cursor:pointer;
 
     filter:
-    drop-shadow(
-        0 15px 25px
-        rgba(0,0,0,.6)
-    );
+        drop-shadow(
+            0 15px 25px
+            rgba(0,0,0,.6)
+        );
 }
 
 .envBack{
-
     position:absolute;
-
     inset:0;
-
-    border-radius:8px;
-
     background:#e8bf66;
+    border-radius:8px;
 }
 
-.envFront{
-
+/* CARTA */
+.letter{
     position:absolute;
+    left:5%;
+    bottom:8px;
+    width:90%;
+    min-height:185px;
 
+    padding:22px 16px;
+
+    background:#fff8df;
+    color:#5c411b;
+
+    text-align:center;
+
+    border-radius:5px;
+
+    z-index:2;
+
+    transition:1.2s;
+}
+
+.letter h3{
+    color:#8a5918;
+    font-size:22px;
+    margin-bottom:12px;
+}
+
+.letter p{
+    font-size:16px;
+    line-height:1.6;
+}
+
+/* PARTE DELANTERA DEL SOBRE */
+.envFront{
+    position:absolute;
     left:0;
     right:0;
     bottom:0;
-
     height:70%;
 
     background:#f4d487;
 
     clip-path:
-    polygon(
-        0 0,
-        50% 55%,
-        100% 0,
-        100% 100%,
-        0 100%
-    );
+        polygon(
+            0 0,
+            50% 55%,
+            100% 0,
+            100% 100%,
+            0 100%
+        );
 
     z-index:3;
 }
 
+/* TAPA */
 .flap{
-
     position:absolute;
-
     left:0;
     top:0;
 
@@ -756,11 +383,11 @@ body{
     background:#f8db8e;
 
     clip-path:
-    polygon(
-        0 0,
-        100% 0,
-        50% 100%
-    );
+        polygon(
+            0 0,
+            100% 0,
+            50% 100%
+        );
 
     transform-origin:top;
 
@@ -769,248 +396,142 @@ body{
     z-index:4;
 }
 
-.envelope.open .flap{
-
-    transform:
-    rotateX(180deg);
-
-    z-index:1;
-}
-
-
-/* =====================================================
-   SELLO
-===================================================== */
-
+/* SELLO */
 .seal{
-
     position:absolute;
-
     left:50%;
     top:48%;
 
     transform:
-    translate(-50%,-50%);
+        translate(-50%,-50%);
 
     z-index:5;
 
     font-size:42px;
-
     transition:.5s;
 }
 
-.envelope.open .seal{
+/* SOBRE ABIERTO */
+.envelope.open .flap{
+    transform:rotateX(180deg);
+    z-index:1;
+}
 
+.envelope.open .seal{
     opacity:0;
 }
 
-
-/* =====================================================
-   CARTA
-===================================================== */
-
-.letter{
-
-    position:absolute;
-
-    left:5%;
-
-    width:90%;
-
-    bottom:8px;
-
-    min-height:185px;
-
-    padding:25px 18px;
-
-    background:#fff8df;
-
-    color:#5c411b;
-
-    border-radius:5px;
-
-    text-align:center;
-
-    box-shadow:
-    0 4px 15px
-    rgba(0,0,0,.25);
-
-    transform:
-    translateY(0);
-
-    transition:1.2s;
-
-    z-index:2;
-}
-
 .envelope.open .letter{
-
-    transform:
-    translateY(-135px);
-
+    transform:translateY(-135px);
     z-index:6;
 }
 
-.letter h3{
-
-    font-size:23px;
-
-    color:#8a5918;
-
-    margin-bottom:14px;
-}
-
-.letter p{
-
-    font-size:16px;
-
-    line-height:1.6;
-}
-
-
-/* =====================================================
-   BOTÓN CONTINUAR
-===================================================== */
-
+/* BOTON */
 #continue{
-
     position:absolute;
-
     z-index:70;
 
     left:50%;
     bottom:7%;
 
-    transform:
-    translateX(-50%);
+    transform:translateX(-50%);
 
-    padding:
-    12px 25px;
+    padding:12px 25px;
 
     border:none;
-
     border-radius:30px;
 
     background:
-    linear-gradient(
-        135deg,
-        #ffe05c,
-        #ffad20
-    );
+        linear-gradient(
+            135deg,
+            #ffe05c,
+            #ffad20
+        );
 
     color:#4b2e00;
 
     font-size:16px;
-
     font-weight:bold;
 
     opacity:0;
-
     pointer-events:none;
 
     transition:.7s;
 
     box-shadow:
-    0 0 20px
-    rgba(255,210,70,.6);
+        0 0 20px
+        rgba(255,210,70,.6);
 }
 
 #continue.show{
-
     opacity:1;
-
     pointer-events:auto;
 }
 
-
-/* =====================================================
-   FINAL
-===================================================== */
-
+/* FINAL */
 #final{
-
     position:absolute;
-
     inset:0;
 
     z-index:80;
 
     display:flex;
-
     justify-content:center;
-
     align-items:center;
 
     padding:30px;
 
     text-align:center;
 
-    color:white;
-
     background:
-
-    radial-gradient(
-        circle,
-        rgba(40,8,65,.65),
-        rgba(0,0,5,.95)
-    );
+        radial-gradient(
+            circle,
+            rgba(40,8,65,.7),
+            rgba(0,0,5,.97)
+        );
 
     opacity:0;
-
     pointer-events:none;
 
-    transition:
-    opacity 1.5s;
+    transition:1.5s;
 }
 
 #final.show{
-
     opacity:1;
-
     pointer-events:auto;
 }
 
 .finalBox{
-
     max-width:620px;
 }
 
 .finalBox h2{
-
     font-size:
-    clamp(
-        32px,
-        9vw,
-        60px
-    );
+        clamp(
+            32px,
+            9vw,
+            60px
+        );
 
     text-shadow:
-    0 0 18px #ffd45a;
+        0 0 18px #ffd45a;
 }
 
 .finalBox p{
-
     margin-top:18px;
-
     font-size:
-    clamp(
-        17px,
-        4.5vw,
-        24px
-    );
+        clamp(
+            17px,
+            4.5vw,
+            24px
+        );
 
     line-height:1.7;
 }
 
-
-/* =====================================================
-   BOTÓN MÚSICA
-===================================================== */
-
+/* MUSICA */
 #music{
-
     position:fixed;
-
     right:14px;
     top:14px;
 
@@ -1022,115 +543,25 @@ body{
     border-radius:50%;
 
     border:
-    1px solid
-    rgba(255,255,255,.4);
+        1px solid
+        rgba(255,255,255,.4);
 
     background:
-    rgba(0,0,0,.4);
+        rgba(0,0,0,.5);
 
     color:white;
-
     font-size:18px;
 }
-
-
-/* =====================================================
-   PARTÍCULAS
-===================================================== */
-
-.particle{
-
-    position:fixed;
-
-    width:6px;
-    height:6px;
-
-    border-radius:50%;
-
-    background:#ffd95a;
-
-    box-shadow:
-    0 0 10px white;
-
-    pointer-events:none;
-
-    z-index:150;
-
-    animation:
-    particleMove
-    900ms
-    ease-out
-    forwards;
-}
-
-@keyframes particleMove{
-
-    to{
-
-        transform:
-        translate(
-            var(--x),
-            var(--y)
-        )
-        scale(0);
-
-        opacity:0;
-    }
-}
-
-
-/* =====================================================
-   CORAZONES
-===================================================== */
-
-.heart{
-
-    position:fixed;
-
-    bottom:-30px;
-
-    z-index:160;
-
-    font-size:22px;
-
-    pointer-events:none;
-
-    animation:
-    heartMove
-    3.5s
-    linear
-    forwards;
-}
-
-@keyframes heartMove{
-
-    to{
-
-        transform:
-        translateY(-110vh)
-        scale(1.5);
-
-        opacity:0;
-    }
-}
-
 </style>
-
 </head>
-
 
 <body>
 
-
-<!-- =====================================================
-     UNIVERSO
-===================================================== -->
-
-<div id="scene">
-
-    <div id="stars"></div>
+<div id="space">
 
     <div class="nebula"></div>
+
+    <div id="stars"></div>
 
     <div id="galaxy"></div>
 
@@ -1138,12 +569,8 @@ body{
 
     <div id="flowers"></div>
 
-    <div id="groundFlowers"></div>
 
-
-    <!-- =================================================
-         TEXTO
-    ================================================== -->
+    <!-- TITULO -->
 
     <div id="intro">
 
@@ -1153,11 +580,13 @@ body{
 
         <p>
             Hay pequeños detalles que
-            pueden guardar grandes sentimientos.
+            guardan grandes sentimientos.
         </p>
 
     </div>
 
+
+    <!-- AYUDA -->
 
     <div id="hint">
 
@@ -1167,9 +596,7 @@ body{
     </div>
 
 
-    <!-- =================================================
-         SOBRE
-    ================================================== -->
+    <!-- SOBRE -->
 
     <div id="envelopeWrap">
 
@@ -1190,7 +617,6 @@ body{
                 </h3>
 
                 <p>
-
                     Espero y te guste a pesar
                     de que no tuve mucho tiempo
                     para hacerlo.
@@ -1198,18 +624,17 @@ body{
                     Me esforcé mucho y espero
                     pasar más momentos lindos
                     junto a ti. ❤️
-
                 </p>
 
             </div>
 
 
-            <!-- TAPA DEL SOBRE -->
+            <!-- TAPA -->
 
             <div class="flap"></div>
 
 
-            <!-- PARTE DELANTERA -->
+            <!-- PARTE FRONTAL -->
 
             <div class="envFront"></div>
 
@@ -1225,18 +650,14 @@ body{
     </div>
 
 
-    <!-- =================================================
-         CONTINUAR
-    ================================================== -->
+    <!-- CONTINUAR -->
 
     <button id="continue">
         ✨ Continuar ✨
     </button>
 
 
-    <!-- =================================================
-         FINAL
-    ================================================== -->
+    <!-- FINAL -->
 
     <div id="final">
 
@@ -1247,13 +668,11 @@ body{
             </h2>
 
             <p>
-
                 Espero que podamos seguir
                 creando muchos recuerdos,
                 viviendo momentos bonitos
                 y compartiendo sonrisas
                 juntos. ❤️
-
             </p>
 
         </div>
@@ -1263,9 +682,7 @@ body{
 </div>
 
 
-<!-- =====================================================
-     PANTALLA DE INICIO
-===================================================== -->
+<!-- INICIO -->
 
 <div id="start">
 
@@ -1284,9 +701,7 @@ body{
 </div>
 
 
-<!-- =====================================================
-     MÚSICA
-===================================================== -->
+<!-- BOTÓN MÚSICA -->
 
 <button id="music">
     ♫
@@ -1295,503 +710,237 @@ body{
 
 <script>
 
-/* =====================================================
+/* ==========================================
    ELEMENTOS
-===================================================== */
+========================================== */
 
 const start =
-document.getElementById("start");
+    document.getElementById("start");
 
 const intro =
-document.getElementById("intro");
+    document.getElementById("intro");
 
 const hint =
-document.getElementById("hint");
+    document.getElementById("hint");
 
 const envelopeWrap =
-document.getElementById("envelopeWrap");
+    document.getElementById("envelopeWrap");
 
 const envelope =
-document.getElementById("envelope");
+    document.getElementById("envelope");
 
 const continueBtn =
-document.getElementById("continue");
+    document.getElementById("continue");
 
 const finalScreen =
-document.getElementById("final");
-
-const musicBtn =
-document.getElementById("music");
+    document.getElementById("final");
 
 const stars =
-document.getElementById("stars");
+    document.getElementById("stars");
 
 const galaxy =
-document.getElementById("galaxy");
+    document.getElementById("galaxy");
 
 const flowers =
-document.getElementById("flowers");
+    document.getElementById("flowers");
 
-const ground =
-document.getElementById("groundFlowers");
+const music =
+    document.getElementById("music");
 
-
-/* =====================================================
-   VARIABLES
-===================================================== */
 
 let started = false;
-
-let stage = 0;
-
-let audioCtx = null;
-
-let musicOn = false;
+let opened = false;
 
 
-/* =====================================================
+/* ==========================================
    CREAR ESTRELLAS
-===================================================== */
+========================================== */
 
-for(let i=0;i<220;i++){
+for(let i = 0; i < 220; i++){
 
     const star =
-    document.createElement("div");
+        document.createElement("div");
 
     star.className =
-    "star";
-
-    const size =
-    Math.random()*3+1;
-
-    star.style.width =
-    size+"px";
-
-    star.style.height =
-    size+"px";
+        "star";
 
     star.style.left =
-    Math.random()*100+"%";
+        Math.random() * 100 + "%";
 
     star.style.top =
-    Math.random()*100+"%";
+        Math.random() * 100 + "%";
+
+    star.style.width =
+        (1 + Math.random() * 3) + "px";
+
+    star.style.height =
+        star.style.width;
 
     star.style.animationDelay =
-    Math.random()*3+"s";
+        Math.random() * 2 + "s";
 
     stars.appendChild(star);
 }
 
 
-/* =====================================================
-   ESTRELLAS DE LA GALAXIA
-===================================================== */
+/* ==========================================
+   ESTRELLAS DE GALAXIA
+========================================== */
 
-for(let i=0;i<80;i++){
+for(let i = 0; i < 90; i++){
 
     const star =
-    document.createElement("div");
+        document.createElement("div");
 
     star.className =
-    "orbitStar";
+        "orbitStar";
 
     const angle =
-    Math.random()*Math.PI*2;
+        Math.random() *
+        Math.PI * 2;
 
     const radius =
-    70+Math.random()*270;
+        70 +
+        Math.random() * 270;
 
     star.style.left =
-    Math.cos(angle)*radius+"px";
+        Math.cos(angle) *
+        radius + "px";
 
     star.style.top =
-    Math.sin(angle)*radius*.45+"px";
-
-    star.style.opacity =
-    .3+Math.random()*.7;
+        Math.sin(angle) *
+        radius *
+        .45 + "px";
 
     galaxy.appendChild(star);
 }
 
 
-/* =====================================================
-   CREAR FLORES
-===================================================== */
+/* ==========================================
+   FLORES
+========================================== */
 
 function createFlower(){
 
     const flower =
-    document.createElement("div");
+        document.createElement("div");
 
     flower.className =
-    "flower";
+        "flower";
 
     flower.textContent =
-    "🌻";
+        "🌻";
 
     flower.style.left =
-    (4+Math.random()*92)+"%";
+        (4 + Math.random() * 92) +
+        "%";
 
     flower.style.top =
-    (20+Math.random()*65)+"%";
+        (20 + Math.random() * 65) +
+        "%";
 
     flower.style.fontSize =
-    (24+Math.random()*35)+"px";
+        (24 + Math.random() * 35) +
+        "px";
 
     flowers.appendChild(flower);
 
-
     setTimeout(
-        function(){
-
-            flower.remove();
-
-        },
+        () => flower.remove(),
         9000
     );
 }
 
 
-/* =====================================================
-   FLORES DEL SUELO
-===================================================== */
-
-function createGroundFlowers(){
-
-    for(let i=0;i<25;i++){
-
-        const height =
-        40+Math.random()*120;
-
-
-        const stem =
-        document.createElement("div");
-
-        stem.className =
-        "stem";
-
-        stem.style.setProperty(
-            "--h",
-            height+"px"
-        );
-
-        stem.style.left =
-        Math.random()*100+"%";
-
-        ground.appendChild(stem);
-
-
-        const flower =
-        document.createElement("div");
-
-        flower.className =
-        "gflower";
-
-        flower.textContent =
-        "🌻";
-
-        flower.style.setProperty(
-            "--h",
-            height+"px"
-        );
-
-        flower.style.left =
-        stem.style.left;
-
-        flower.style.fontSize =
-        (20+Math.random()*25)+"px";
-
-        ground.appendChild(flower);
-    }
-}
-
-
-/* =====================================================
-   PARTÍCULAS
-===================================================== */
-
-function particles(x,y){
-
-    for(let i=0;i<16;i++){
-
-        const particle =
-        document.createElement("div");
-
-        particle.className =
-        "particle";
-
-        particle.style.left =
-        x+"px";
-
-        particle.style.top =
-        y+"px";
-
-
-        const angle =
-        Math.random()*Math.PI*2;
-
-        const distance =
-        30+Math.random()*100;
-
-
-        particle.style.setProperty(
-            "--x",
-            Math.cos(angle)*distance+"px"
-        );
-
-        particle.style.setProperty(
-            "--y",
-            Math.sin(angle)*distance+"px"
-        );
-
-
-        document.body.appendChild(
-            particle
-        );
-
-
-        setTimeout(
-            function(){
-
-                particle.remove();
-
-            },
-            1000
-        );
-    }
-}
-
-
-/* =====================================================
+/* ==========================================
    CORAZONES
-===================================================== */
+========================================== */
 
 function createHearts(){
 
-    for(let i=0;i<20;i++){
+    for(let i = 0; i < 20; i++){
 
         setTimeout(
-            function(){
+            () => {
 
                 const heart =
-                document.createElement("div");
-
-                heart.className =
-                "heart";
+                    document.createElement("div");
 
                 heart.textContent =
-                Math.random()>.5
-                ? "❤️"
-                : "💛";
+                    Math.random() > .5
+                    ? "❤️"
+                    : "💛";
+
+                heart.style.position =
+                    "fixed";
+
+                heart.style.bottom =
+                    "-30px";
 
                 heart.style.left =
-                Math.random()*100+"%";
+                    Math.random() * 100 + "%";
+
+                heart.style.fontSize =
+                    "24px";
+
+                heart.style.zIndex =
+                    "150";
+
+                heart.style.transition =
+                    "transform 4s linear, opacity 4s";
 
                 document.body.appendChild(
                     heart
                 );
 
+                requestAnimationFrame(
+                    () => {
+
+                        heart.style.transform =
+                            "translateY(-110vh)";
+
+                        heart.style.opacity =
+                            "0";
+
+                    }
+                );
 
                 setTimeout(
-                    function(){
-
-                        heart.remove();
-
-                    },
-                    5000
+                    () => heart.remove(),
+                    4500
                 );
 
             },
-            i*100
+            i * 100
         );
     }
 }
 
 
-/* =====================================================
-   MÚSICA
-===================================================== */
-
-function startMusic(){
-
-    try{
-
-        const AudioContext =
-        window.AudioContext ||
-        window.webkitAudioContext;
-
-
-        if(!AudioContext){
-
-            return;
-        }
-
-
-        if(!audioCtx){
-
-            audioCtx =
-            new AudioContext();
-        }
-
-
-        if(
-            audioCtx.state ===
-            "suspended"
-        ){
-
-            audioCtx.resume();
-        }
-
-
-        if(musicOn){
-
-            return;
-        }
-
-
-        musicOn = true;
-
-
-        const master =
-        audioCtx.createGain();
-
-        master.gain.value =
-        .025;
-
-        master.connect(
-            audioCtx.destination
-        );
-
-
-        const notes = [
-
-            261.63,
-            329.63,
-            392.00,
-            329.63,
-
-            293.66,
-            349.23,
-            440.00,
-            349.23
-
-        ];
-
-
-        let index = 0;
-
-
-        function note(){
-
-            if(!musicOn){
-
-                return;
-            }
-
-
-            const osc =
-            audioCtx.createOscillator();
-
-            const gain =
-            audioCtx.createGain();
-
-
-            osc.type =
-            "sine";
-
-
-            osc.frequency.value =
-            notes[
-                index %
-                notes.length
-            ];
-
-
-            index++;
-
-
-            gain.gain.setValueAtTime(
-                .0001,
-                audioCtx.currentTime
-            );
-
-
-            gain.gain.exponentialRampToValueAtTime(
-                .03,
-                audioCtx.currentTime+.08
-            );
-
-
-            gain.gain.exponentialRampToValueAtTime(
-                .0001,
-                audioCtx.currentTime+1
-            );
-
-
-            osc.connect(gain);
-
-            gain.connect(master);
-
-
-            osc.start();
-
-
-            osc.stop(
-                audioCtx.currentTime+1.1
-            );
-
-
-            setTimeout(
-                note,
-                700
-            );
-        }
-
-
-        note();
-
-    }
-
-    catch(error){
-
-        console.log(
-            "Música no disponible"
-        );
-    }
-}
-
-
-/* =====================================================
-   INICIAR TODO
-===================================================== */
-
-function startExperience(x,y){
+/* ==========================================
+   INICIAR EXPERIENCIA
+========================================== */
+
+function startExperience(){
 
     if(started){
-
         return;
     }
-
 
     started = true;
 
 
-    /* Partículas */
-
-    particles(x,y);
-
-
-    /* Ocultar inicio */
+    /* OCULTAR PANTALLA */
 
     start.classList.add(
         "hide"
     );
 
 
-    /* Mostrar título */
+    /* MOSTRAR TITULO */
 
     setTimeout(
-        function(){
+        () => {
 
             intro.classList.add(
                 "show"
@@ -1802,53 +951,51 @@ function startExperience(x,y){
     );
 
 
-    /* Mostrar indicación */
+    /* MOSTRAR AYUDA */
 
     setTimeout(
-        function(){
+        () => {
 
             hint.classList.add(
                 "show"
             );
 
         },
-        1000
+        900
     );
 
 
-    /* Ocultar indicación */
-
     setTimeout(
-        function(){
+        () => {
 
             hint.classList.remove(
                 "show"
             );
 
         },
-        3000
+        3200
     );
 
 
-    /* Flores */
+    /* FLORES */
 
-    for(let i=0;i<25;i++){
+    for(
+        let i = 0;
+        i < 30;
+        i++
+    ){
 
         setTimeout(
-            function(){
-
-                createFlower();
-
-            },
-            1200+i*150
+            createFlower,
+            1000 + i * 140
         );
     }
 
 
-    /* Sobre */
+    /* SOBRE */
 
     setTimeout(
-        function(){
+        () => {
 
             envelopeWrap.classList.add(
                 "show"
@@ -1857,49 +1004,26 @@ function startExperience(x,y){
         },
         3500
     );
-
-
-    /* Flores del suelo */
-
-    setTimeout(
-        function(){
-
-            createGroundFlowers();
-
-        },
-        4000
-    );
-
-
-    /* Música */
-
-    startMusic();
-
-
-    stage = 1;
 }
 
 
-/* =====================================================
-   INICIO POR CLICK
-===================================================== */
+/* ==========================================
+   INICIAR CON CLICK
+========================================== */
 
 start.addEventListener(
     "click",
-    function(event){
+    function(){
 
-        startExperience(
-            event.clientX,
-            event.clientY
-        );
+        startExperience();
 
     }
 );
 
 
-/* =====================================================
-   INICIO POR TOQUE
-===================================================== */
+/* ==========================================
+   INICIAR CON TOUCH
+========================================== */
 
 start.addEventListener(
     "touchend",
@@ -1907,15 +1031,7 @@ start.addEventListener(
 
         event.preventDefault();
 
-
-        const touch =
-        event.changedTouches[0];
-
-
-        startExperience(
-            touch.clientX,
-            touch.clientY
-        );
+        startExperience();
 
     },
     {
@@ -1924,85 +1040,23 @@ start.addEventListener(
 );
 
 
-/* =====================================================
-   INICIO POR POINTER
-===================================================== */
+/* ==========================================
+   INICIAR CON POINTER
+========================================== */
 
 start.addEventListener(
     "pointerup",
-    function(event){
+    function(){
 
-        startExperience(
-            event.clientX,
-            event.clientY
-        );
+        startExperience();
 
     }
 );
 
 
-/* =====================================================
-   TOQUES EN LA GALAXIA
-===================================================== */
-
-document.addEventListener(
-    "pointerdown",
-    function(event){
-
-        if(!started){
-
-            return;
-        }
-
-
-        if(
-            event.target.closest(
-                "#envelope"
-            )
-        ){
-
-            return;
-        }
-
-
-        if(
-            event.target.closest(
-                "#music"
-            )
-        ){
-
-            return;
-        }
-
-
-        if(
-            event.target.closest(
-                "#continue"
-            )
-        ){
-
-            return;
-        }
-
-
-        particles(
-            event.clientX,
-            event.clientY
-        );
-
-
-        if(stage===1){
-
-            createFlower();
-        }
-
-    }
-);
-
-
-/* =====================================================
+/* ==========================================
    ABRIR SOBRE
-===================================================== */
+========================================== */
 
 envelope.addEventListener(
     "click",
@@ -2010,27 +1064,21 @@ envelope.addEventListener(
 
         event.stopPropagation();
 
-
-        if(
-            envelope.classList.contains(
-                "open"
-            )
-        ){
-
+        if(opened){
             return;
         }
 
+        opened = true;
 
         envelope.classList.add(
             "open"
         );
 
-
         createHearts();
 
 
         setTimeout(
-            function(){
+            () => {
 
                 continueBtn.classList.add(
                     "show"
@@ -2039,16 +1087,13 @@ envelope.addEventListener(
             },
             1300
         );
-
-
-        stage = 2;
     }
 );
 
 
-/* =====================================================
+/* ==========================================
    CONTINUAR
-===================================================== */
+========================================== */
 
 continueBtn.addEventListener(
     "click",
@@ -2063,11 +1108,10 @@ continueBtn.addEventListener(
 
 
         envelopeWrap.style.opacity =
-        "0";
-
+            "0";
 
         envelopeWrap.style.pointerEvents =
-        "none";
+            "none";
 
 
         intro.classList.remove(
@@ -2078,21 +1122,21 @@ continueBtn.addEventListener(
         createHearts();
 
 
-        for(let i=0;i<25;i++){
+        for(
+            let i = 0;
+            i < 25;
+            i++
+        ){
 
             setTimeout(
-                function(){
-
-                    createFlower();
-
-                },
-                i*100
+                createFlower,
+                i * 100
             );
         }
 
 
         setTimeout(
-            function(){
+            () => {
 
                 finalScreen.classList.add(
                     "show"
@@ -2101,55 +1145,69 @@ continueBtn.addEventListener(
             },
             1000
         );
-
-
-        stage = 3;
     }
 );
 
 
-/* =====================================================
-   BOTÓN DE MÚSICA
-===================================================== */
+/* ==========================================
+   CREAR FLORES AL TOCAR
+========================================== */
 
-musicBtn.addEventListener(
-    "click",
+document.addEventListener(
+    "pointerdown",
     function(event){
 
-        event.stopPropagation();
-
-
-        if(!audioCtx){
-
-            startMusic();
-
+        if(!started){
             return;
         }
 
+        if(
+            event.target.closest(
+                "#envelope"
+            )
+        ){
+            return;
+        }
 
-        musicOn =
-        !musicOn;
+        if(
+            event.target.closest(
+                "#continue"
+            )
+        ){
+            return;
+        }
 
+        if(
+            event.target.closest(
+                "#music"
+            )
+        ){
+            return;
+        }
 
-        musicBtn.textContent =
-        musicOn
-        ? "♫"
-        : "🔇";
+        createFlower();
+
     }
 );
 
 
-/* =====================================================
-   CERRAR PANTALLA FINAL
-===================================================== */
+/* ==========================================
+   BOTÓN MÚSICA
+========================================== */
 
-finalScreen.addEventListener(
+let musicState = false;
+
+music.addEventListener(
     "click",
     function(){
 
-        finalScreen.classList.remove(
-            "show"
-        );
+        musicState =
+            !musicState;
+
+        music.textContent =
+            musicState
+            ? "🔇"
+            : "♫";
 
     }
 );
@@ -2157,5 +1215,4 @@ finalScreen.addEventListener(
 </script>
 
 </body>
-
 </html>
