@@ -1,173 +1,1457 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Te amo Alita 💗</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width,
+      initial-scale=1.0,
+      maximum-scale=1.0,
+      user-scalable=no">
+
+<title>Para mi princesa 🌻</title>
+
+<style>
+
+/* =====================================================
+   CONFIGURACIÓN GENERAL
+===================================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #020008;
+    font-family: Georgia, serif;
+}
+
+body {
+    touch-action: manipulation;
+}
+
+
+/* =====================================================
+   ESCENA PRINCIPAL
+===================================================== */
+
+#scene {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% 48%,
+            rgba(91, 28, 150, .28),
+            transparent 32%
+        ),
+
+        radial-gradient(
+            circle at 18% 25%,
+            rgba(30, 80, 190, .20),
+            transparent 28%
+        ),
+
+        radial-gradient(
+            circle at 82% 72%,
+            rgba(205, 45, 145, .18),
+            transparent 30%
+        ),
+
+        #020008;
+}
+
+
+/* =====================================================
+   ESTRELLAS
+===================================================== */
+
+#stars {
+    position: absolute;
+    inset: 0;
+}
+
+.star {
+
+    position: absolute;
+
+    border-radius: 50%;
+
+    background: white;
+
+    box-shadow:
+        0 0 8px white;
+
+    animation:
+        twinkle 2s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+
+    from {
+        opacity: .15;
+        transform: scale(.55);
     }
 
-    body {
-      background: linear-gradient(135deg, #ffe6ea 0%, #ffc3a0 100%);
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow-x: hidden;
-      position: relative;
-    }
-
-    /* Fondo de corazones animado */
-    .heart {
-      position: absolute;
-      color: #ff4b5c;
-      font-size: 20px;
-      animation: floatUp 5s linear infinite;
-      opacity: 0.7;
-      z-index: 1;
-    }
-
-    @keyframes floatUp {
-      0% {
-        transform: translateY(100vh) scale(0.8);
+    to {
         opacity: 1;
-      }
-      100% {
-        transform: translateY(-10vh) scale(1.2);
+        transform: scale(1.4);
+    }
+}
+
+
+/* =====================================================
+   NEBULOSA
+===================================================== */
+
+.nebula {
+
+    position: absolute;
+
+    width: 85vmax;
+    height: 65vmax;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(255, 80, 190, .16),
+            rgba(75, 40, 220, .12),
+            transparent 68%
+        );
+
+    filter: blur(35px);
+
+    animation:
+        nebulaMove
+        12s
+        ease-in-out
+        infinite
+        alternate;
+}
+
+@keyframes nebulaMove {
+
+    to {
+
+        transform:
+            translate(-50%, -50%)
+            rotate(12deg)
+            scale(1.2);
+    }
+}
+
+
+/* =====================================================
+   GALAXIA
+===================================================== */
+
+#galaxy {
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 2px;
+    height: 2px;
+
+    transform:
+        translate(-50%, -50%);
+
+    animation:
+        galaxySpin
+        18s
+        linear
+        infinite;
+}
+
+@keyframes galaxySpin {
+
+    to {
+
+        transform:
+            translate(-50%, -50%)
+            rotate(360deg);
+    }
+}
+
+.orbitStar {
+
+    position: absolute;
+
+    width: 3px;
+    height: 3px;
+
+    background: #ffeeb0;
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 8px #ffd45a;
+}
+
+
+/* =====================================================
+   AGUJERO NEGRO
+===================================================== */
+
+.blackhole {
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 125px;
+    height: 125px;
+
+    transform:
+        translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background: #000;
+
+    z-index: 4;
+
+    box-shadow:
+
+        0 0 24px #ffc94d,
+
+        0 0 65px #ff7500,
+
+        0 0 110px
+        rgba(255, 100, 0, .35);
+}
+
+.blackhole::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: -31px;
+
+    border-radius: 50%;
+
+    border: 7px solid transparent;
+
+    border-top-color: #ffe36b;
+
+    border-right-color: #ff7200;
+
+    animation:
+        spin
+        2s
+        linear
+        infinite;
+}
+
+.blackhole::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: -50px;
+
+    border-radius: 50%;
+
+    border: 7px solid transparent;
+
+    border-bottom-color: #ffd85a;
+
+    border-left-color:
+        rgba(255, 120, 0, .7);
+
+    animation:
+        spin
+        4s
+        linear
+        infinite reverse;
+}
+
+@keyframes spin {
+
+    to {
+
+        transform:
+            rotate(360deg);
+    }
+}
+
+
+/* =====================================================
+   FLORES FLOTANDO
+===================================================== */
+
+#flowers {
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 7;
+
+    pointer-events: none;
+}
+
+.flower {
+
+    position: absolute;
+
+    transform:
+        translateY(45px)
+        scale(.15);
+
+    opacity: 0;
+
+    animation:
+        grow
+        1.8s
+        cubic-bezier(.2,.8,.2,1)
+        forwards;
+
+    filter:
+        drop-shadow(
+            0 0 9px
+            rgba(255,220,50,.7)
+        );
+}
+
+@keyframes grow {
+
+    60% {
+        opacity: 1;
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+/* =====================================================
+   FLORES DEL SUELO
+===================================================== */
+
+#groundFlowers {
+
+    position: absolute;
+
+    bottom: -3px;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 22%;
+
+    z-index: 6;
+
+    pointer-events: none;
+}
+
+.stem {
+
+    position: absolute;
+
+    bottom: 0;
+
+    width: 4px;
+
+    border-radius:
+        5px 5px 0 0;
+
+    background:
+        linear-gradient(
+            #4c9b42,
+            #173d24
+        );
+
+    transform-origin: bottom;
+
+    animation:
+        stemGrow
+        2s
+        ease-out
+        forwards;
+}
+
+@keyframes stemGrow {
+
+    from {
+        height: 0;
+    }
+
+    to {
+        height: var(--h);
+    }
+}
+
+.gflower {
+
+    position: absolute;
+
+    bottom: var(--h);
+
+    transform:
+        translate(-50%, 50%)
+        scale(0);
+
+    animation:
+        flowerOpen
+        1.3s
+        .8s
+        ease-out
+        forwards;
+
+    filter:
+        drop-shadow(
+            0 0 8px #ffd83d
+        );
+}
+
+@keyframes flowerOpen {
+
+    to {
+
+        transform:
+            translate(-50%, 50%)
+            scale(1);
+    }
+}
+
+
+/* =====================================================
+   PANTALLA INICIAL
+===================================================== */
+
+#start {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 100;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(44, 9, 77, .92),
+            rgba(0, 0, 7, .99)
+        );
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: white;
+
+    transition: 1.2s;
+}
+
+#start.hide {
+
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+.startFlower {
+
+    font-size: 92px;
+
+    filter:
+        drop-shadow(
+            0 0 22px #ffd83d
+        );
+
+    animation:
+        pulse
+        2s
+        infinite;
+}
+
+@keyframes pulse {
+
+    50% {
+        transform: scale(1.13);
+    }
+}
+
+#start h1 {
+
+    font-size:
+        clamp(24px, 7vw, 42px);
+
+    margin-top: 22px;
+
+    text-align: center;
+
+    text-shadow:
+        0 0 18px #dca7ff;
+}
+
+#start p {
+
+    margin-top: 14px;
+
+    font-size: 17px;
+
+    letter-spacing: 2px;
+
+    opacity: .75;
+
+    animation:
+        fadeText
+        1.8s
+        infinite
+        alternate;
+}
+
+@keyframes fadeText {
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* =====================================================
+   INTRODUCCIÓN
+===================================================== */
+
+#intro {
+
+    position: absolute;
+
+    z-index: 20;
+
+    top: 10%;
+
+    left: 50%;
+
+    width: 92%;
+
+    transform:
+        translateX(-50%);
+
+    text-align: center;
+
+    color: white;
+
+    opacity: 0;
+
+    transition: 2s;
+
+    text-shadow:
+        0 0 14px white;
+}
+
+#intro.show {
+
+    opacity: 1;
+}
+
+#intro h2 {
+
+    font-size:
+        clamp(27px, 8vw, 52px);
+}
+
+#intro p {
+
+    font-size:
+        clamp(15px, 4vw, 20px);
+
+    margin-top: 10px;
+}
+
+
+/* =====================================================
+   TEXTO DE AYUDA
+===================================================== */
+
+#hint {
+
+    position: absolute;
+
+    z-index: 20;
+
+    bottom: 10%;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    color: white;
+
+    opacity: 0;
+
+    transition: 1s;
+
+    text-align: center;
+
+    width: 90%;
+
+    font-size: 16px;
+}
+
+#hint.show {
+
+    opacity: .85;
+}
+
+
+/* =====================================================
+   SOBRE
+===================================================== */
+
+#envelopeWrap {
+
+    position: absolute;
+
+    z-index: 40;
+
+    left: 50%;
+
+    top: 55%;
+
+    transform:
+        translate(-50%, -50%)
+        scale(.1);
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition: 1s;
+}
+
+#envelopeWrap.show {
+
+    transform:
+        translate(-50%, -50%)
+        scale(1);
+
+    opacity: 1;
+
+    pointer-events: auto;
+}
+
+.envelope {
+
+    position: relative;
+
+    width:
+        min(330px, 82vw);
+
+    height: 220px;
+
+    cursor: pointer;
+
+    filter:
+        drop-shadow(
+            0 15px 25px
+            rgba(0,0,0,.6)
+        );
+}
+
+.envBack {
+
+    position: absolute;
+
+    inset: 0;
+
+    background: #e8bf66;
+
+    border-radius: 7px;
+
+    box-shadow:
+        0 0 20px
+        rgba(255,210,90,.25);
+}
+
+.envFront {
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 70%;
+
+    background: #f4d487;
+
+    clip-path:
+        polygon(
+            0 0,
+            50% 55%,
+            100% 0,
+            100% 100%,
+            0 100%
+        );
+
+    z-index: 3;
+}
+
+.flap {
+
+    position: absolute;
+
+    left: 0;
+
+    top: 0;
+
+    width: 100%;
+
+    height: 62%;
+
+    background: #f8db8e;
+
+    clip-path:
+        polygon(
+            0 0,
+            100% 0,
+            50% 100%
+        );
+
+    transform-origin: top;
+
+    transition: 1s;
+
+    z-index: 4;
+}
+
+.envelope.open .flap {
+
+    transform:
+        rotateX(180deg);
+
+    z-index: 1;
+}
+
+.seal {
+
+    position: absolute;
+
+    z-index: 5;
+
+    left: 50%;
+
+    top: 48%;
+
+    transform:
+        translate(-50%, -50%);
+
+    font-size: 42px;
+
+    transition: .5s;
+}
+
+.envelope.open .seal {
+
+    opacity: 0;
+}
+
+
+/* =====================================================
+   CARTA DENTRO DEL SOBRE
+===================================================== */
+
+.letter {
+
+    position: absolute;
+
+    left: 5%;
+
+    width: 90%;
+
+    bottom: 8px;
+
+    min-height: 185px;
+
+    padding: 25px 18px;
+
+    background: #fff8df;
+
+    color: #5c411b;
+
+    border-radius: 5px;
+
+    text-align: center;
+
+    box-shadow:
+        0 4px 15px
+        rgba(0,0,0,.25);
+
+    transform:
+        translateY(0);
+
+    transition: 1.2s;
+
+    z-index: 2;
+}
+
+.envelope.open .letter {
+
+    transform:
+        translateY(-135px);
+
+    z-index: 6;
+}
+
+.letter h3 {
+
+    font-size: 23px;
+
+    margin-bottom: 13px;
+
+    color: #8a5918;
+}
+
+.letter p {
+
+    font-size: 15px;
+
+    line-height: 1.55;
+}
+
+
+/* =====================================================
+   BOTÓN CONTINUAR
+===================================================== */
+
+#continue {
+
+    position: absolute;
+
+    z-index: 70;
+
+    bottom: 7%;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    padding:
+        12px 24px;
+
+    border: 0;
+
+    border-radius: 30px;
+
+    background:
+        #ffd14d;
+
+    color:
+        #4b2e00;
+
+    font-weight: bold;
+
+    font-size: 16px;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition: .7s;
+
+    box-shadow:
+        0 0 20px
+        rgba(255,210,70,.55);
+}
+
+#continue.show {
+
+    opacity: 1;
+
+    pointer-events: auto;
+}
+
+
+/* =====================================================
+   PANTALLA FINAL
+===================================================== */
+
+#final {
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 80;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(30,7,50,.6),
+            rgba(0,0,5,.93)
+        );
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 30px;
+
+    color: white;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition: 1.5s;
+}
+
+#final.show {
+
+    opacity: 1;
+
+    pointer-events: auto;
+}
+
+.finalBox {
+
+    max-width: 620px;
+}
+
+.finalBox h2 {
+
+    font-size:
+        clamp(32px, 9vw, 60px);
+
+    text-shadow:
+        0 0 18px #ffd45a;
+}
+
+.finalBox p {
+
+    font-size:
+        clamp(17px, 4.5vw, 24px);
+
+    line-height: 1.7;
+
+    margin-top: 18px;
+}
+
+
+/* =====================================================
+   BOTÓN DE MÚSICA
+===================================================== */
+
+#music {
+
+    position: fixed;
+
+    z-index: 90;
+
+    right: 14px;
+
+    top: 14px;
+
+    width: 42px;
+
+    height: 42px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.4);
+
+    border-radius: 50%;
+
+    background:
+        rgba(0,0,0,.35);
+
+    color: white;
+
+    font-size: 18px;
+
+    opacity: .7;
+}
+
+
+/* =====================================================
+   PARTÍCULAS
+===================================================== */
+
+.particle {
+
+    position: fixed;
+
+    z-index: 60;
+
+    width: 6px;
+
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: #ffd95a;
+
+    box-shadow:
+        0 0 10px white;
+
+    pointer-events: none;
+
+    animation:
+        particle
+        900ms
+        ease-out
+        forwards;
+}
+
+@keyframes particle {
+
+    to {
+
+        transform:
+            translate(
+                var(--x),
+                var(--y)
+            )
+            scale(0);
+
         opacity: 0;
-      }
     }
+}
 
-    /* Contenedor principal */
-    .container {
-      background: rgba(255, 255, 255, 0.92);
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);
-      padding: 30px 20px;
-      max-width: 500px;
-      width: 90%;
-      text-align: center;
-      z-index: 10;
-      backdrop-filter: blur(5px);
-      border: 2px solid #ffccd5;
-    }
 
-    h1 {
-      color: #e63946;
-      font-size: 2.2rem;
-      margin-bottom: 15px;
-      font-weight: 700;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-    }
+/* =====================================================
+   CORAZONES
+===================================================== */
 
-    .img-container {
-      margin: 15px 0;
-    }
+.heart {
 
-    .img-container img {
-      width: 100%;
-      max-width: 250px;
-      border-radius: 15px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease;
-    }
+    position: fixed;
 
-    .img-container img:hover {
-      transform: scale(1.05);
-    }
+    z-index: 65;
 
-    /* Carta desplegable */
-    .card-text {
-      color: #4a4a4a;
-      font-size: 1rem;
-      line-height: 1.6;
-      text-align: justify;
-      margin-top: 15px;
-      padding: 15px;
-      background: #fff0f3;
-      border-radius: 12px;
-      border-left: 4px solid #ff4d6d;
-      display: none;
-      animation: fadeIn 1s ease forwards;
-    }
+    pointer-events: none;
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    font-size: 20px;
 
-    .btn {
-      background-color: #ff4d6d;
-      color: white;
-      border: none;
-      padding: 12px 25px;
-      font-size: 1.1rem;
-      font-weight: bold;
-      border-radius: 25px;
-      cursor: pointer;
-      box-shadow: 0 4px 10px rgba(255, 77, 109, 0.4);
-      transition: all 0.3s ease;
-      margin-top: 10px;
-    }
+    animation:
+        heart
+        3.5s
+        linear
+        forwards;
+}
 
-    .btn:hover {
-      background-color: #ff758f;
-      transform: translateY(-2px);
+@keyframes heart {
+
+    to {
+
+        transform:
+            translateY(-100vh)
+            scale(1.5);
+
+        opacity: 0;
     }
-  </style>
+}
+
+</style>
 </head>
+
+
 <body>
 
-  <!-- Corazones de fondo flotando -->
-  <script>
-    function createHearts() {
-      const heart = document.createElement('div');
-      heart.classList.add('heart');
-      heart.innerHTML = '❤️';
-      heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.animationDuration = Math.random() * 3 + 3 + 's';
-      document.body.appendChild(heart);
 
-      setTimeout(() => {
-        heart.remove();
-      }, 5000);
-    }
-    setInterval(createHearts, 300);
-  </script>
+<!-- =====================================================
+     ESCENA
+===================================================== -->
 
-  <div class="container">
-    <h1>Te amo Alita 💗</h1>
+<div id="scene">
 
-    <!-- Imagen estilo Bubu y Dudu / Ositos -->
-    <div class="img-container">
-      <img src="https://gifdb.com/images/high/bubu-dudu-hugs-love-kiss-p3727tqpt5isw7f1.gif" alt="Ositos Cariñosos Bubu y Dudu">
+    <div id="stars"></div>
+
+    <div class="nebula"></div>
+
+    <div id="galaxy"></div>
+
+    <div class="blackhole"></div>
+
+    <div id="flowers"></div>
+
+    <div id="groundFlowers"></div>
+
+
+    <!-- INTRODUCCIÓN -->
+
+    <div id="intro">
+
+        <h2>
+            Para mi princesa hermosa 🌻
+        </h2>
+
+        <p>
+            Hay pequeños detalles que
+            pueden guardar grandes sentimientos.
+        </p>
+
     </div>
 
-    <button class="btn" onclick="toggleMessage()">Toca para leer 💌</button>
 
-    <!-- Carta dedicada -->
-    <div class="card-text" id="letter">
-      <p><strong>Mi Alita bella,</strong></p><br>
-      <p>Hay personas que llegan a nuestra vida y pasan sin dejar huella, pero tú llegaste de una forma distinta. Poco a poco te convertiste en alguien imprescindible para mí. No fue solo por los momentos bonitos, sino porque incluso sin darte cuenta, lograste hacer que todos mis días fueran mejores.</p><br>
-      <p>Desde que apareciste, descubrí que el verdadero cariño se siente en los pequeños detalles, en una conversación sencilla, en una risa compartida y en el simple hecho de saber que estás a mi lado.</p><br>
-      <p>Quiero seguir construyendo recuerdos juntos, apoyarte en cada meta que tengas y abrazarte siempre. Gracias por ser tal como eres y por dejarme formar parte de tu vida. ¡Te amo muchísimo!</p>
+    <!-- INDICACIÓN -->
+
+    <div id="hint">
+
+        ✨ Toca la pantalla para
+        hacer aparecer estrellas ✨
+
     </div>
-  </div>
 
-  <script>
-    function toggleMessage() {
-      const letter = document.getElementById('letter');
-      if (letter.style.display === 'block') {
-        letter.style.display = 'none';
-      } else {
-        letter.style.display = 'block';
-      }
-    }
-  </script>
-</body>
-</html>
+
+    <!-- =================================================
+         SOBRE
+    ================================================== -->
+
+    <div id="envelopeWrap">
+
+        <div
+            class="envelope"
+            id="envelope"
+        >
+
+            <div class="envBack"></div>
+
+
+            <!-- CARTA -->
+
+            <div class="letter">
+
+                <h3>
+                    Para mi princesa hermosa 🌻
+                </h3>
+
+                <p>
+
+                    Espero y te guste a pesar
+                    de que no tuve mucho tiempo
+                    para hacerlo.
+
+                    Me esforcé mucho y espero
+                    pasar más momentos lindos
+                    junto a ti. ❤️
+
+                </p>
+
+            </div>
+
+
+            <!-- TAPA -->
+
+            <div class="flap"></div>
+
+
+            <!-- PARTE DELANTERA -->
+
+            <div class="envFront"></div>
+
+
+            <!-- SELLO -->
+
+            <div class="seal">
+                💛
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- BOTÓN CONTINUAR -->
+
+    <button id="continue">
+
+        ✨ Continuar ✨
+
+    </button>
+
+
+    <!-- =================================================
+         FINAL
+    ================================================== -->
+
+    <div id="final">
+
+        <div class="finalBox">
+
+            <h2>
+                Te quiero mucho 🌻
+            </h2>
+
+            <p>
+
+                Espero que podamos seguir
+                creando muchos recuerdos,
+                viviendo momentos bonitos
+                y compartiendo sonrisas juntos. ❤️
+
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     PANTALLA DE INICIO
+===================================================== -->
+
+<div id="start">
+
+    <div class="startFlower">
+        🌻
+    </div>
+
+    <h1>
+        Una pequeña sorpresa para ti
+    </h1>
+
+    <p>
+        ♡ Toca para comenzar ♡
+    </p>
+
+</div>
+
+
+<!-- BOTÓN MÚSICA -->
+
+<button
+    id="music"
+    aria-label="Música"
+>
+    ♫
+</button>
+
+
+<script>
+
+/* =====================================================
+   ELEMENTOS
+===================================================== */
+
+const stars =
+    document.getElementById("stars");
+
+const galaxy =
+    document.getElementById("galaxy");
+
+const flowers =
+    document.getElementById("flowers");
+
+const ground =
+    document.getElementById("groundFlowers");
+
+const start =
+    document.getElementById("start");
+
+const intro =
+    document.getElementById("intro");
+
+const hint =
+    document.getElementById("hint");
+
+const envelopeWrap =
+    document.getElementById("envelopeWrap");
+
+const envelope =
+    document.getElementById("envelope");
+
+const continueBtn =
+    document.getElementById("continue");
+
+const finalScreen =
+    document.getElementById("final");
+
+const musicBtn =
+    document.getElementById("music");
+
+
+/* =====================================================
+   VARIABLES
+===================================================== */
+
+let started = false;
+
+let audioCtx = null;
+
+let musicOn = false;
+
+let stage = 0;
+
+
+/* =====================================================
+   CREAR ESTRELLAS
+===================================================== */
+
+for (
+    let i = 0;
+    i < 220;
+    i++
+) {
+
+    const star =
+        document.createElement("i");
+
+    star.className =
+        "star";
+
+    const size =
+        Math.random() * 3 + 1;
+
+    star.style.width =
+        size + "px";
+
+    star.style.height =
+        size + "px";
+
+    star.style.left =
+        Math.random() * 100 + "%";
+
+    star.style.top =
+        Math.random() * 100 + "%";
+
+    star.style.animationDelay =
+        Math.random() * 3 + "s";
+
+    stars.appendChild(star);
+}
+
+
+/* =====================================================
+   ESTRELLAS ORBITALES
+===================================================== */
+
+for (
+    let i = 0;
+    i < 75;
+    i++
+) {
+
+    const star =
+        document.createElement("i");
+
+    star.className =
+        "orbitStar";
+
+    const angle =
+        Math.random() *
+        Math.PI *
+        2;
+
+    const radius =
+        70 +
+        Math.random() *
+        260;
+
+    star.style.left =
+        Math.cos(angle) *
+        radius +
+        "px";
+
+    star.style.top =
+        Math.sin(angle) *
+        radius *
+        .45 +
+        "px";
+
+    star.style.opacity =
+        .25 +
+        Math.random() *
+        .75;
+
+    galaxy.appendChild(star);
+}
+
+
+/* =====================================================
+   FLORES DEL SUELO
+===================================================== */
+
+function makeGroundFlowers() {
+
+    for (
+        let i = 0;
+        i < 24;
+        i++
+    ) {
+
+        const height =
+            45 +
+            Math.random() *
+            120;
+
+
+        /* TALLO */
+
+        const stem =
+            document.createElement("div");
+
+        stem.className =
+            "stem";
+
+        stem.style.setProperty(
+            "--h",
+            height + "px"
+        );
+
+        stem.style.left =
+            Math.random() *
+            100 +
+            "%";
+
+        ground.appendChild(stem);
+
+
+        /* FLOR */
+
+        const flower =
+            document.createElement("div");
+
+        flower.className =
+            "gflower";
+
+        flower.textContent =
+            "🌻";
+
+        flower.style.setProperty(
+            "--h",
+            height + "px"
+        )
+    
