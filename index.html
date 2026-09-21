@@ -1504,3 +1504,658 @@ function createGroundFlowers(){
         ground.appendChild(flower);
     }
 }
+
+
+/* =====================================================
+   PARTÍCULAS
+===================================================== */
+
+function particles(x,y){
+
+    for(let i=0;i<16;i++){
+
+        const particle =
+        document.createElement("div");
+
+        particle.className =
+        "particle";
+
+        particle.style.left =
+        x+"px";
+
+        particle.style.top =
+        y+"px";
+
+
+        const angle =
+        Math.random()*Math.PI*2;
+
+        const distance =
+        30+Math.random()*100;
+
+
+        particle.style.setProperty(
+            "--x",
+            Math.cos(angle)*distance+"px"
+        );
+
+        particle.style.setProperty(
+            "--y",
+            Math.sin(angle)*distance+"px"
+        );
+
+
+        document.body.appendChild(
+            particle
+        );
+
+
+        setTimeout(
+            function(){
+
+                particle.remove();
+
+            },
+            1000
+        );
+    }
+}
+
+
+/* =====================================================
+   CORAZONES
+===================================================== */
+
+function createHearts(){
+
+    for(let i=0;i<20;i++){
+
+        setTimeout(
+            function(){
+
+                const heart =
+                document.createElement("div");
+
+                heart.className =
+                "heart";
+
+                heart.textContent =
+                Math.random()>.5
+                ? "❤️"
+                : "💛";
+
+                heart.style.left =
+                Math.random()*100+"%";
+
+                document.body.appendChild(
+                    heart
+                );
+
+
+                setTimeout(
+                    function(){
+
+                        heart.remove();
+
+                    },
+                    5000
+                );
+
+            },
+            i*100
+        );
+    }
+}
+
+
+/* =====================================================
+   MÚSICA
+===================================================== */
+
+function startMusic(){
+
+    try{
+
+        const AudioContext =
+        window.AudioContext ||
+        window.webkitAudioContext;
+
+
+        if(!AudioContext){
+
+            return;
+        }
+
+
+        if(!audioCtx){
+
+            audioCtx =
+            new AudioContext();
+        }
+
+
+        if(
+            audioCtx.state ===
+            "suspended"
+        ){
+
+            audioCtx.resume();
+        }
+
+
+        if(musicOn){
+
+            return;
+        }
+
+
+        musicOn = true;
+
+
+        const master =
+        audioCtx.createGain();
+
+        master.gain.value =
+        .025;
+
+        master.connect(
+            audioCtx.destination
+        );
+
+
+        const notes = [
+
+            261.63,
+            329.63,
+            392.00,
+            329.63,
+
+            293.66,
+            349.23,
+            440.00,
+            349.23
+
+        ];
+
+
+        let index = 0;
+
+
+        function note(){
+
+            if(!musicOn){
+
+                return;
+            }
+
+
+            const osc =
+            audioCtx.createOscillator();
+
+            const gain =
+            audioCtx.createGain();
+
+
+            osc.type =
+            "sine";
+
+
+            osc.frequency.value =
+            notes[
+                index %
+                notes.length
+            ];
+
+
+            index++;
+
+
+            gain.gain.setValueAtTime(
+                .0001,
+                audioCtx.currentTime
+            );
+
+
+            gain.gain.exponentialRampToValueAtTime(
+                .03,
+                audioCtx.currentTime+.08
+            );
+
+
+            gain.gain.exponentialRampToValueAtTime(
+                .0001,
+                audioCtx.currentTime+1
+            );
+
+
+            osc.connect(gain);
+
+            gain.connect(master);
+
+
+            osc.start();
+
+
+            osc.stop(
+                audioCtx.currentTime+1.1
+            );
+
+
+            setTimeout(
+                note,
+                700
+            );
+        }
+
+
+        note();
+
+    }
+
+    catch(error){
+
+        console.log(
+            "Música no disponible"
+        );
+    }
+}
+
+
+/* =====================================================
+   INICIAR TODO
+===================================================== */
+
+function startExperience(x,y){
+
+    if(started){
+
+        return;
+    }
+
+
+    started = true;
+
+
+    /* Partículas */
+
+    particles(x,y);
+
+
+    /* Ocultar inicio */
+
+    start.classList.add(
+        "hide"
+    );
+
+
+    /* Mostrar título */
+
+    setTimeout(
+        function(){
+
+            intro.classList.add(
+                "show"
+            );
+
+        },
+        300
+    );
+
+
+    /* Mostrar indicación */
+
+    setTimeout(
+        function(){
+
+            hint.classList.add(
+                "show"
+            );
+
+        },
+        1000
+    );
+
+
+    /* Ocultar indicación */
+
+    setTimeout(
+        function(){
+
+            hint.classList.remove(
+                "show"
+            );
+
+        },
+        3000
+    );
+
+
+    /* Flores */
+
+    for(let i=0;i<25;i++){
+
+        setTimeout(
+            function(){
+
+                createFlower();
+
+            },
+            1200+i*150
+        );
+    }
+
+
+    /* Sobre */
+
+    setTimeout(
+        function(){
+
+            envelopeWrap.classList.add(
+                "show"
+            );
+
+        },
+        3500
+    );
+
+
+    /* Flores del suelo */
+
+    setTimeout(
+        function(){
+
+            createGroundFlowers();
+
+        },
+        4000
+    );
+
+
+    /* Música */
+
+    startMusic();
+
+
+    stage = 1;
+}
+
+
+/* =====================================================
+   INICIO POR CLICK
+===================================================== */
+
+start.addEventListener(
+    "click",
+    function(event){
+
+        startExperience(
+            event.clientX,
+            event.clientY
+        );
+
+    }
+);
+
+
+/* =====================================================
+   INICIO POR TOQUE
+===================================================== */
+
+start.addEventListener(
+    "touchend",
+    function(event){
+
+        event.preventDefault();
+
+
+        const touch =
+        event.changedTouches[0];
+
+
+        startExperience(
+            touch.clientX,
+            touch.clientY
+        );
+
+    },
+    {
+        passive:false
+    }
+);
+
+
+/* =====================================================
+   INICIO POR POINTER
+===================================================== */
+
+start.addEventListener(
+    "pointerup",
+    function(event){
+
+        startExperience(
+            event.clientX,
+            event.clientY
+        );
+
+    }
+);
+
+
+/* =====================================================
+   TOQUES EN LA GALAXIA
+===================================================== */
+
+document.addEventListener(
+    "pointerdown",
+    function(event){
+
+        if(!started){
+
+            return;
+        }
+
+
+        if(
+            event.target.closest(
+                "#envelope"
+            )
+        ){
+
+            return;
+        }
+
+
+        if(
+            event.target.closest(
+                "#music"
+            )
+        ){
+
+            return;
+        }
+
+
+        if(
+            event.target.closest(
+                "#continue"
+            )
+        ){
+
+            return;
+        }
+
+
+        particles(
+            event.clientX,
+            event.clientY
+        );
+
+
+        if(stage===1){
+
+            createFlower();
+        }
+
+    }
+);
+
+
+/* =====================================================
+   ABRIR SOBRE
+===================================================== */
+
+envelope.addEventListener(
+    "click",
+    function(event){
+
+        event.stopPropagation();
+
+
+        if(
+            envelope.classList.contains(
+                "open"
+            )
+        ){
+
+            return;
+        }
+
+
+        envelope.classList.add(
+            "open"
+        );
+
+
+        createHearts();
+
+
+        setTimeout(
+            function(){
+
+                continueBtn.classList.add(
+                    "show"
+                );
+
+            },
+            1300
+        );
+
+
+        stage = 2;
+    }
+);
+
+
+/* =====================================================
+   CONTINUAR
+===================================================== */
+
+continueBtn.addEventListener(
+    "click",
+    function(event){
+
+        event.stopPropagation();
+
+
+        continueBtn.classList.remove(
+            "show"
+        );
+
+
+        envelopeWrap.style.opacity =
+        "0";
+
+
+        envelopeWrap.style.pointerEvents =
+        "none";
+
+
+        intro.classList.remove(
+            "show"
+        );
+
+
+        createHearts();
+
+
+        for(let i=0;i<25;i++){
+
+            setTimeout(
+                function(){
+
+                    createFlower();
+
+                },
+                i*100
+            );
+        }
+
+
+        setTimeout(
+            function(){
+
+                finalScreen.classList.add(
+                    "show"
+                );
+
+            },
+            1000
+        );
+
+
+        stage = 3;
+    }
+);
+
+
+/* =====================================================
+   BOTÓN DE MÚSICA
+===================================================== */
+
+musicBtn.addEventListener(
+    "click",
+    function(event){
+
+        event.stopPropagation();
+
+
+        if(!audioCtx){
+
+            startMusic();
+
+            return;
+        }
+
+
+        musicOn =
+        !musicOn;
+
+
+        musicBtn.textContent =
+        musicOn
+        ? "♫"
+        : "🔇";
+    }
+);
+
+
+/* =====================================================
+   CERRAR PANTALLA FINAL
+===================================================== */
+
+finalScreen.addEventListener(
+    "click",
+    function(){
+
+        finalScreen.classList.remove(
+            "show"
+        );
+
+    }
+);
+
+</script>
+
+</body>
+
+</html>
