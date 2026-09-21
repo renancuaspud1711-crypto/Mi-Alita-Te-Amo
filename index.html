@@ -2,17 +2,29 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+      content="width=device-width,
+      initial-scale=1.0,
+      maximum-scale=1.0,
+      user-scalable=no">
+
 <title>Para mi princesa 🌻</title>
 
 <style>
+
+/* =========================================================
+   CONFIGURACIÓN GENERAL
+========================================================= */
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
 
-html,body{
+html,
+body{
     width:100%;
     height:100%;
     overflow:hidden;
@@ -21,69 +33,132 @@ html,body{
 body{
     background:#020008;
     color:white;
-    font-family:Georgia,serif;
+    font-family:Georgia, "Times New Roman", serif;
     touch-action:manipulation;
+    user-select:none;
 }
 
-/* FONDO */
-#space{
+button{
+    font-family:inherit;
+}
+
+
+/* =========================================================
+   ESCENA PRINCIPAL
+========================================================= */
+
+#scene{
+
     position:fixed;
     inset:0;
+
     overflow:hidden;
+
     background:
-        radial-gradient(circle at 50% 50%,
-        rgba(120,30,190,.35),
-        transparent 35%),
-        radial-gradient(circle at 20% 20%,
-        rgba(30,80,180,.2),
-        transparent 35%),
-        #020008;
+
+    radial-gradient(
+        ellipse at 50% 50%,
+        rgba(104,24,180,.30),
+        transparent 38%
+    ),
+
+    radial-gradient(
+        ellipse at 15% 20%,
+        rgba(30,90,220,.20),
+        transparent 35%
+    ),
+
+    radial-gradient(
+        ellipse at 85% 75%,
+        rgba(230,35,160,.16),
+        transparent 35%
+    ),
+
+    #020008;
 }
 
-/* ESTRELLAS */
-.star{
+
+/* =========================================================
+   CANVAS DE PARTÍCULAS
+========================================================= */
+
+#canvas{
+
     position:absolute;
-    width:2px;
-    height:2px;
-    background:white;
-    border-radius:50%;
-    box-shadow:0 0 7px white;
-    animation:brillo 2s infinite alternate;
+
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    z-index:5;
+
+    pointer-events:none;
 }
 
-@keyframes brillo{
-    from{
-        opacity:.2;
-        transform:scale(.5);
-    }
-    to{
-        opacity:1;
-        transform:scale(1.4);
-    }
-}
 
-/* NEBULOSA */
+/* =========================================================
+   NEBULOSAS
+========================================================= */
+
 .nebula{
+
     position:absolute;
+
     width:100vmax;
     height:75vmax;
+
     left:50%;
     top:50%;
-    transform:translate(-50%,-50%);
+
+    transform:
+        translate(-50%,-50%);
+
     border-radius:50%;
+
+    filter:blur(45px);
+
+    pointer-events:none;
+}
+
+.nebula.one{
+
     background:
         radial-gradient(
             ellipse,
-            rgba(255,80,190,.18),
-            rgba(60,30,220,.15),
+            rgba(255,60,190,.17),
+            rgba(90,30,220,.14),
             transparent 70%
         );
-    filter:blur(35px);
-    animation:nebulosa 12s ease-in-out infinite alternate;
+
+    animation:
+        nebulaMove 14s
+        ease-in-out
+        infinite alternate;
 }
 
-@keyframes nebulosa{
+.nebula.two{
+
+    width:70vmax;
+    height:55vmax;
+
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(40,110,255,.13),
+            transparent 68%
+        );
+
+    animation:
+        nebulaMove2 18s
+        ease-in-out
+        infinite alternate;
+}
+
+@keyframes nebulaMove{
+
     to{
+
         transform:
             translate(-50%,-50%)
             rotate(15deg)
@@ -91,273 +166,769 @@ body{
     }
 }
 
-/* GALAXIA */
-#galaxy{
-    position:absolute;
-    left:50%;
-    top:50%;
-    width:1px;
-    height:1px;
-    animation:giro 20s linear infinite;
-}
+@keyframes nebulaMove2{
 
-.orbitStar{
-    position:absolute;
-    width:3px;
-    height:3px;
-    border-radius:50%;
-    background:#ffe68a;
-    box-shadow:0 0 8px #ffd44d;
-}
-
-@keyframes giro{
     to{
-        transform:rotate(360deg);
+
+        transform:
+            translate(-50%,-50%)
+            rotate(-18deg)
+            scale(.85);
     }
 }
 
-/* AGUJERO NEGRO */
-.blackhole{
+
+/* =========================================================
+   ESTRELLAS
+========================================================= */
+
+#stars{
+
     position:absolute;
-    left:50%;
-    top:50%;
-    width:105px;
-    height:105px;
-    transform:translate(-50%,-50%);
+
+    inset:0;
+
+    z-index:2;
+
+    pointer-events:none;
+}
+
+.star{
+
+    position:absolute;
+
+    width:2px;
+    height:2px;
+
     border-radius:50%;
-    background:#000;
-    z-index:3;
+
+    background:white;
 
     box-shadow:
-        0 0 25px #ffd84d,
-        0 0 65px #ff7200,
-        0 0 110px rgba(255,100,0,.35);
+        0 0 7px white;
+
+    animation:
+        twinkle
+        2s
+        ease-in-out
+        infinite
+        alternate;
+}
+
+@keyframes twinkle{
+
+    from{
+
+        opacity:.15;
+
+        transform:
+            scale(.5);
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            scale(1.5);
+    }
+}
+
+
+/* =========================================================
+   ESTRELLAS FUGACES
+========================================================= */
+
+.shooting-star{
+
+    position:absolute;
+
+    width:120px;
+    height:2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            white
+        );
+
+    transform:
+        rotate(-35deg);
+
+    opacity:0;
+
+    z-index:3;
+
+    pointer-events:none;
+}
+
+.shooting-star.fly{
+
+    animation:
+        shooting
+        1.4s
+        linear
+        forwards;
+}
+
+@keyframes shooting{
+
+    0%{
+
+        opacity:0;
+
+        transform:
+            translate(0,0)
+            rotate(-35deg);
+    }
+
+    15%{
+        opacity:1;
+    }
+
+    100%{
+
+        opacity:0;
+
+        transform:
+            translate(-450px,350px)
+            rotate(-35deg);
+    }
+}
+
+
+/* =========================================================
+   GALAXIA
+========================================================= */
+
+#galaxy{
+
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    width:1px;
+    height:1px;
+
+    z-index:4;
+
+    animation:
+        galaxyRotate
+        35s
+        linear
+        infinite;
+}
+
+.galaxy-star{
+
+    position:absolute;
+
+    width:3px;
+    height:3px;
+
+    border-radius:50%;
+
+    background:#ffe9a0;
+
+    box-shadow:
+        0 0 9px #ffd65a;
+}
+
+@keyframes galaxyRotate{
+
+    to{
+
+        transform:
+            rotate(360deg);
+    }
+}
+
+
+/* =========================================================
+   AGUJERO NEGRO
+========================================================= */
+
+.blackhole{
+
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    width:110px;
+    height:110px;
+
+    transform:
+        translate(-50%,-50%);
+
+    border-radius:50%;
+
+    background:#000;
+
+    z-index:7;
+
+    box-shadow:
+
+        0 0 25px #ffe16b,
+
+        0 0 60px #ff7900,
+
+        0 0 120px
+        rgba(255,90,0,.35);
 }
 
 .blackhole::before{
+
     content:"";
+
     position:absolute;
-    inset:-28px;
+
+    inset:-27px;
+
     border-radius:50%;
-    border:6px solid transparent;
-    border-top-color:#ffe56b;
+
+    border:
+        7px solid transparent;
+
+    border-top-color:#ffe66f;
+
     border-right-color:#ff7200;
-    animation:giro 2s linear infinite;
+
+    animation:
+        ringRotate
+        2s
+        linear
+        infinite;
 }
 
-/* FLORES */
-#flowers{
+.blackhole::after{
+
+    content:"";
+
     position:absolute;
+
+    inset:-48px;
+
+    border-radius:50%;
+
+    border:
+        4px solid transparent;
+
+    border-left-color:#ffcb3d;
+
+    border-bottom-color:#ff6c00;
+
+    animation:
+        ringRotate
+        5s
+        linear
+        infinite reverse;
+}
+
+@keyframes ringRotate{
+
+    to{
+
+        transform:
+            rotate(360deg);
+    }
+}
+
+
+/* =========================================================
+   FLORES
+========================================================= */
+
+#flowers{
+
+    position:absolute;
+
     inset:0;
+
+    z-index:12;
+
     pointer-events:none;
-    z-index:8;
 }
 
 .flower{
+
     position:absolute;
+
     opacity:0;
-    transform:scale(.1);
-    animation:aparecerFlor 1.5s forwards;
-    filter:drop-shadow(0 0 10px #ffd83d);
+
+    transform:
+        translateY(30px)
+        scale(.1)
+        rotate(-30deg);
+
+    filter:
+        drop-shadow(
+            0 0 12px
+            rgba(255,220,50,.9)
+        );
+
+    animation:
+        flowerAppear
+        1.8s
+        cubic-bezier(.2,.8,.2,1)
+        forwards;
 }
 
-@keyframes aparecerFlor{
-    to{
+@keyframes flowerAppear{
+
+    70%{
+
         opacity:1;
-        transform:scale(1);
+    }
+
+    100%{
+
+        opacity:1;
+
+        transform:
+            translateY(0)
+            scale(1)
+            rotate(0);
     }
 }
 
-/* PANTALLA DE INICIO */
-#start{
-    position:fixed;
-    inset:0;
-    z-index:100;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
 
-    background:
-        radial-gradient(
-            circle,
-            rgba(50,10,90,.98),
-            #000008
-        );
+/* =========================================================
+   PÉTALOS
+========================================================= */
 
-    cursor:pointer;
-    transition:opacity 1s;
+.petal{
+
+    position:absolute;
+
+    top:-40px;
+
+    z-index:15;
+
+    pointer-events:none;
+
+    font-size:20px;
+
+    animation:
+        fallPetal
+        linear
+        forwards;
 }
 
-#start.hide{
+@keyframes fallPetal{
+
+    0%{
+
+        transform:
+            translateY(-40px)
+            rotate(0deg);
+
+        opacity:0;
+    }
+
+    10%{
+        opacity:1;
+    }
+
+    100%{
+
+        transform:
+            translateY(110vh)
+            rotate(720deg);
+
+        opacity:0;
+    }
+}
+
+
+/* =========================================================
+   PANTALLA INICIAL
+========================================================= */
+
+#startScreen{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:100;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    padding:25px;
+
+    background:
+
+        radial-gradient(
+            circle at center,
+            rgba(57,12,95,.97),
+            rgba(0,0,8,.99)
+        );
+
+    transition:
+        opacity 1.2s,
+        visibility 1.2s;
+
+    cursor:pointer;
+}
+
+#startScreen.hide{
+
     opacity:0;
+
+    visibility:hidden;
+
     pointer-events:none;
 }
 
-.startFlower{
-    font-size:95px;
-    animation:pulso 1.7s infinite;
-    filter:drop-shadow(0 0 25px #ffd83d);
+.start-sunflower{
+
+    font-size:100px;
+
+    filter:
+        drop-shadow(
+            0 0 30px
+            #ffd83d
+        );
+
+    animation:
+        sunflowerPulse
+        2s
+        ease-in-out
+        infinite;
 }
 
-@keyframes pulso{
+@keyframes sunflowerPulse{
+
+    0%,
+    100%{
+
+        transform:
+            scale(1)
+            rotate(-3deg);
+    }
+
     50%{
-        transform:scale(1.15);
+
+        transform:
+            scale(1.13)
+            rotate(3deg);
     }
 }
 
-#start h1{
-    width:90%;
+#startScreen h1{
+
     margin-top:20px;
-    font-size:clamp(25px,7vw,44px);
-    text-shadow:0 0 18px #dca7ff;
+
+    width:95%;
+
+    font-size:
+        clamp(
+            26px,
+            7vw,
+            48px
+        );
+
+    text-shadow:
+        0 0 20px
+        rgba(220,170,255,.9);
 }
 
-#start p{
-    margin-top:18px;
+#startScreen p{
+
+    margin-top:20px;
+
     font-size:18px;
+
     letter-spacing:2px;
-    animation:parpadeo 1.5s infinite alternate;
+
+    opacity:.8;
+
+    animation:
+        startText
+        1.5s
+        ease-in-out
+        infinite
+        alternate;
 }
 
-@keyframes parpadeo{
+@keyframes startText{
+
     to{
-        opacity:.35;
+        opacity:.25;
     }
 }
 
-/* TITULO */
+
+/* =========================================================
+   TÍTULO
+========================================================= */
+
 #intro{
+
     position:absolute;
+
     z-index:20;
-    top:8%;
+
+    top:7%;
+
     left:50%;
-    width:94%;
-    transform:translateX(-50%);
+
+    width:95%;
+
+    transform:
+        translateX(-50%);
+
     text-align:center;
+
     opacity:0;
-    transition:opacity 1.5s;
-    text-shadow:0 0 12px white;
+
+    transition:
+        opacity 2s;
+
+    pointer-events:none;
 }
 
 #intro.show{
+
     opacity:1;
 }
 
 #intro h2{
-    font-size:clamp(25px,7vw,48px);
+
+    font-size:
+        clamp(
+            27px,
+            8vw,
+            52px
+        );
+
+    text-shadow:
+        0 0 15px white,
+        0 0 30px #d9a0ff;
 }
 
 #intro p{
-    margin-top:10px;
-    font-size:clamp(14px,4vw,20px);
+
+    margin-top:12px;
+
+    font-size:
+        clamp(
+            14px,
+            4vw,
+            20px
+        );
+
+    opacity:.85;
 }
 
-/* AYUDA */
+
+/* =========================================================
+   INDICACIÓN
+========================================================= */
+
 #hint{
+
     position:absolute;
+
     z-index:20;
-    bottom:10%;
+
+    bottom:9%;
+
     left:50%;
+
     width:90%;
-    transform:translateX(-50%);
+
+    transform:
+        translateX(-50%);
+
     text-align:center;
+
     opacity:0;
+
     transition:1s;
+
+    pointer-events:none;
 }
 
 #hint.show{
-    opacity:1;
+
+    opacity:.9;
 }
 
-/* SOBRE */
+
+/* =========================================================
+   SOBRE
+========================================================= */
+
 #envelopeWrap{
+
     position:absolute;
+
     z-index:40;
+
     left:50%;
-    top:55%;
+    top:56%;
 
     transform:
         translate(-50%,-50%)
-        scale(.1);
+        scale(.05);
 
     opacity:0;
+
     pointer-events:none;
-    transition:1s;
+
+    transition:
+        transform 1.2s cubic-bezier(.2,.8,.2,1),
+        opacity 1s;
 }
 
 #envelopeWrap.show{
+
     transform:
         translate(-50%,-50%)
         scale(1);
 
     opacity:1;
+
     pointer-events:auto;
 }
 
 .envelope{
+
     position:relative;
-    width:min(330px,82vw);
-    height:220px;
+
+    width:
+        min(
+            340px,
+            84vw
+        );
+
+    height:230px;
+
     cursor:pointer;
 
     filter:
         drop-shadow(
-            0 15px 25px
-            rgba(0,0,0,.6)
+            0 18px 30px
+            rgba(0,0,0,.65)
         );
+
+    transition:
+        transform .3s;
 }
 
-.envBack{
+.envelope:hover{
+
+    transform:
+        translateY(-5px);
+}
+
+.env-back{
+
     position:absolute;
+
     inset:0;
-    background:#e8bf66;
-    border-radius:8px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #d8a94e,
+            #f0cf7a
+        );
+
+    border-radius:10px;
 }
 
-/* CARTA */
+
+/* =========================================================
+   CARTA
+========================================================= */
+
 .letter{
+
     position:absolute;
+
     left:5%;
+
     bottom:8px;
+
     width:90%;
-    min-height:185px;
 
-    padding:22px 16px;
+    min-height:190px;
 
-    background:#fff8df;
+    padding:25px 18px;
+
+    background:
+        linear-gradient(
+            #fffdf0,
+            #fff3ca
+        );
+
     color:#5c411b;
+
+    border-radius:6px;
 
     text-align:center;
 
-    border-radius:5px;
-
     z-index:2;
 
-    transition:1.2s;
+    box-shadow:
+        0 5px 20px
+        rgba(0,0,0,.25);
+
+    transition:
+        transform 1.3s
+        cubic-bezier(.2,.8,.2,1);
 }
 
 .letter h3{
+
     color:#8a5918;
-    font-size:22px;
-    margin-bottom:12px;
+
+    font-size:23px;
+
+    margin-bottom:13px;
 }
 
 .letter p{
+
     font-size:16px;
-    line-height:1.6;
+
+    line-height:1.65;
 }
 
-/* PARTE DELANTERA DEL SOBRE */
-.envFront{
+
+/* =========================================================
+   FRENTE SOBRE
+========================================================= */
+
+.env-front{
+
     position:absolute;
+
     left:0;
     right:0;
     bottom:0;
-    height:70%;
 
-    background:#f4d487;
+    height:72%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #edc96f,
+            #f8dd99
+        );
 
     clip-path:
         polygon(
@@ -371,16 +942,27 @@ body{
     z-index:3;
 }
 
-/* TAPA */
+
+/* =========================================================
+   TAPA
+========================================================= */
+
 .flap{
+
     position:absolute;
+
     left:0;
     top:0;
 
     width:100%;
-    height:62%;
+    height:63%;
 
-    background:#f8db8e;
+    background:
+        linear-gradient(
+            135deg,
+            #ffe5a4,
+            #f3d080
+        );
 
     clip-path:
         polygon(
@@ -391,92 +973,159 @@ body{
 
     transform-origin:top;
 
-    transition:1s;
+    transition:
+        transform 1s;
 
     z-index:4;
 }
 
-/* SELLO */
+
+/* =========================================================
+   SELLO
+========================================================= */
+
 .seal{
+
     position:absolute;
+
     left:50%;
     top:48%;
 
     transform:
         translate(-50%,-50%);
 
-    z-index:5;
+    z-index:6;
 
-    font-size:42px;
-    transition:.5s;
+    font-size:45px;
+
+    filter:
+        drop-shadow(
+            0 0 8px
+            #ffcf45
+        );
+
+    transition:.4s;
 }
 
-/* SOBRE ABIERTO */
 .envelope.open .flap{
-    transform:rotateX(180deg);
+
+    transform:
+        rotateX(180deg);
+
     z-index:1;
 }
 
 .envelope.open .seal{
+
     opacity:0;
+
+    transform:
+        translate(-50%,-50%)
+        scale(.2);
 }
 
 .envelope.open .letter{
-    transform:translateY(-135px);
+
+    transform:
+        translateY(-140px);
+
     z-index:6;
 }
 
-/* BOTON */
+
+/* =========================================================
+   BOTÓN CONTINUAR
+========================================================= */
+
 #continue{
+
     position:absolute;
+
     z-index:70;
 
     left:50%;
     bottom:7%;
 
-    transform:translateX(-50%);
+    transform:
+        translateX(-50%)
+        scale(.8);
 
-    padding:12px 25px;
+    padding:
+        13px 28px;
 
-    border:none;
+    border:0;
+
     border-radius:30px;
 
     background:
         linear-gradient(
             135deg,
-            #ffe05c,
-            #ffad20
+            #ffe36a,
+            #ffad22
         );
 
-    color:#4b2e00;
+    color:#4b2d00;
 
     font-size:16px;
+
     font-weight:bold;
-
-    opacity:0;
-    pointer-events:none;
-
-    transition:.7s;
 
     box-shadow:
         0 0 20px
         rgba(255,210,70,.6);
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition:.7s;
+
+    cursor:pointer;
 }
 
 #continue.show{
+
     opacity:1;
+
     pointer-events:auto;
+
+    transform:
+        translateX(-50%)
+        scale(1);
+
+    animation:
+        buttonPulse
+        1.5s
+        infinite alternate;
 }
 
-/* FINAL */
+@keyframes buttonPulse{
+
+    to{
+
+        box-shadow:
+            0 0 35px
+            rgba(255,220,70,.95);
+    }
+}
+
+
+/* =========================================================
+   PANTALLA FINAL
+========================================================= */
+
 #final{
+
     position:absolute;
+
     inset:0;
 
     z-index:80;
 
     display:flex;
+
     justify-content:center;
+
     align-items:center;
 
     padding:30px;
@@ -484,61 +1133,103 @@ body{
     text-align:center;
 
     background:
+
         radial-gradient(
             circle,
-            rgba(40,8,65,.7),
-            rgba(0,0,5,.97)
+            rgba(55,8,80,.75),
+            rgba(0,0,7,.97)
         );
 
     opacity:0;
+
     pointer-events:none;
 
-    transition:1.5s;
+    transition:
+        opacity 1.5s;
 }
 
 #final.show{
+
     opacity:1;
+
     pointer-events:auto;
 }
 
-.finalBox{
-    max-width:620px;
+.final-content{
+
+    max-width:650px;
+
+    animation:
+        finalAppear
+        1.5s
+        ease-out;
 }
 
-.finalBox h2{
+@keyframes finalAppear{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            translateY(30px)
+            scale(.9);
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+.final-content h2{
+
     font-size:
         clamp(
-            32px,
-            9vw,
-            60px
+            35px,
+            10vw,
+            65px
         );
 
     text-shadow:
-        0 0 18px #ffd45a;
+        0 0 20px #ffd45a,
+        0 0 45px #ff8c00;
 }
 
-.finalBox p{
-    margin-top:18px;
+.final-content p{
+
+    margin-top:20px;
+
     font-size:
         clamp(
             17px,
             4.5vw,
-            24px
+            25px
         );
 
     line-height:1.7;
 }
 
-/* MUSICA */
+
+/* =========================================================
+   BOTÓN DE MÚSICA
+========================================================= */
+
 #music{
+
     position:fixed;
-    right:14px;
-    top:14px;
+
+    right:15px;
+    top:15px;
 
     z-index:200;
 
-    width:43px;
-    height:43px;
+    width:45px;
+    height:45px;
 
     border-radius:50%;
 
@@ -550,16 +1241,179 @@ body{
         rgba(0,0,0,.5);
 
     color:white;
+
     font-size:18px;
+
+    cursor:pointer;
 }
+
+
+/* =========================================================
+   FLASH DE LUZ
+========================================================= */
+
+#flash{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:190;
+
+    background:white;
+
+    opacity:0;
+
+    pointer-events:none;
+}
+
+#flash.active{
+
+    animation:
+        flashEffect
+        .6s
+        ease-out;
+}
+
+@keyframes flashEffect{
+
+    0%{
+        opacity:.5;
+    }
+
+    100%{
+        opacity:0;
+    }
+}
+
+
+/* =========================================================
+   CORAZONES
+========================================================= */
+
+.heart{
+
+    position:fixed;
+
+    bottom:-40px;
+
+    z-index:160;
+
+    font-size:25px;
+
+    pointer-events:none;
+
+    animation:
+        heartFloat
+        4s
+        linear
+        forwards;
+}
+
+@keyframes heartFloat{
+
+    to{
+
+        transform:
+            translateY(-115vh)
+            rotate(20deg)
+            scale(1.5);
+
+        opacity:0;
+    }
+}
+
+
+/* =========================================================
+   DESTELLO AL TOCAR
+========================================================= */
+
+.spark{
+
+    position:fixed;
+
+    width:7px;
+    height:7px;
+
+    border-radius:50%;
+
+    background:#ffe36a;
+
+    box-shadow:
+        0 0 12px white;
+
+    z-index:180;
+
+    pointer-events:none;
+
+    animation:
+        sparkMove
+        1s
+        ease-out
+        forwards;
+}
+
+@keyframes sparkMove{
+
+    to{
+
+        transform:
+            translate(
+                var(--x),
+                var(--y)
+            )
+            scale(0);
+
+        opacity:0;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:500px){
+
+    .blackhole{
+
+        width:85px;
+        height:85px;
+    }
+
+    .envelope{
+
+        height:205px;
+    }
+
+    .letter{
+
+        min-height:175px;
+    }
+
+    .letter p{
+
+        font-size:14px;
+    }
+}
+
 </style>
 </head>
 
+
 <body>
 
-<div id="space">
 
-    <div class="nebula"></div>
+<!-- =====================================================
+     ESCENA
+===================================================== -->
+
+<div id="scene">
+
+    <canvas id="canvas"></canvas>
+
+    <div class="nebula one"></div>
+    <div class="nebula two"></div>
 
     <div id="stars"></div>
 
@@ -570,7 +1424,9 @@ body{
     <div id="flowers"></div>
 
 
-    <!-- TITULO -->
+    <!-- ================================================
+         TÍTULO
+    ================================================= -->
 
     <div id="intro">
 
@@ -579,24 +1435,26 @@ body{
         </h2>
 
         <p>
-            Hay pequeños detalles que
-            guardan grandes sentimientos.
+            Una pequeña sorpresa hecha especialmente para ti
         </p>
 
     </div>
 
 
-    <!-- AYUDA -->
+    <!-- ================================================
+         AYUDA
+    ================================================= -->
 
     <div id="hint">
 
-        ✨ Toca la pantalla para
-        hacer aparecer flores ✨
+        ✨ Toca cualquier lugar para crear flores y estrellas ✨
 
     </div>
 
 
-    <!-- SOBRE -->
+    <!-- ================================================
+         SOBRE
+    ================================================= -->
 
     <div id="envelopeWrap">
 
@@ -605,7 +1463,7 @@ body{
             id="envelope"
         >
 
-            <div class="envBack"></div>
+            <div class="env-back"></div>
 
 
             <!-- CARTA -->
@@ -617,13 +1475,13 @@ body{
                 </h3>
 
                 <p>
-                    Espero y te guste a pesar
-                    de que no tuve mucho tiempo
-                    para hacerlo.
 
-                    Me esforcé mucho y espero
-                    pasar más momentos lindos
-                    junto a ti. ❤️
+                    Espero y te guste a pesar de que
+                    no tuve mucho tiempo para hacerlo.
+
+                    Me esforcé mucho y espero pasar
+                    más momentos lindos junto a ti. ❤️
+
                 </p>
 
             </div>
@@ -634,9 +1492,9 @@ body{
             <div class="flap"></div>
 
 
-            <!-- PARTE FRONTAL -->
+            <!-- FRENTE -->
 
-            <div class="envFront"></div>
+            <div class="env-front"></div>
 
 
             <!-- SELLO -->
@@ -650,29 +1508,37 @@ body{
     </div>
 
 
-    <!-- CONTINUAR -->
+    <!-- ================================================
+         BOTÓN
+    ================================================= -->
 
     <button id="continue">
+
         ✨ Continuar ✨
+
     </button>
 
 
-    <!-- FINAL -->
+    <!-- ================================================
+         FINAL
+    ================================================= -->
 
     <div id="final">
 
-        <div class="finalBox">
+        <div class="final-content">
 
             <h2>
                 Te quiero mucho 🌻
             </h2>
 
             <p>
-                Espero que podamos seguir
-                creando muchos recuerdos,
-                viviendo momentos bonitos
-                y compartiendo sonrisas
-                juntos. ❤️
+
+                Espero que podamos seguir creando
+                muchos recuerdos, viviendo momentos
+                bonitos y compartiendo sonrisas juntos.
+
+                ❤️
+
             </p>
 
         </div>
@@ -682,11 +1548,13 @@ body{
 </div>
 
 
-<!-- INICIO -->
+<!-- =====================================================
+     PANTALLA INICIAL
+===================================================== -->
 
-<div id="start">
+<div id="startScreen">
 
-    <div class="startFlower">
+    <div class="start-sunflower">
         🌻
     </div>
 
@@ -701,21 +1569,30 @@ body{
 </div>
 
 
-<!-- BOTÓN MÚSICA -->
+<!-- =====================================================
+     BOTÓN MÚSICA
+===================================================== -->
 
 <button id="music">
     ♫
 </button>
 
 
+<!-- =====================================================
+     FLASH
+===================================================== -->
+
+<div id="flash"></div>
+
+
 <script>
 
-/* ==========================================
+/* =========================================================
    ELEMENTOS
-========================================== */
+========================================================= */
 
-const start =
-    document.getElementById("start");
+const startScreen =
+    document.getElementById("startScreen");
 
 const intro =
     document.getElementById("intro");
@@ -729,11 +1606,14 @@ const envelopeWrap =
 const envelope =
     document.getElementById("envelope");
 
-const continueBtn =
+const continueButton =
     document.getElementById("continue");
 
 const finalScreen =
     document.getElementById("final");
+
+const flowers =
+    document.getElementById("flowers");
 
 const stars =
     document.getElementById("stars");
@@ -741,22 +1621,38 @@ const stars =
 const galaxy =
     document.getElementById("galaxy");
 
-const flowers =
-    document.getElementById("flowers");
-
-const music =
+const musicButton =
     document.getElementById("music");
 
+const flash =
+    document.getElementById("flash");
+
+const canvas =
+    document.getElementById("canvas");
+
+
+/* =========================================================
+   VARIABLES
+========================================================= */
 
 let started = false;
+
 let opened = false;
 
+let musicEnabled = false;
 
-/* ==========================================
+let audioContext = null;
+
+
+/* =========================================================
    CREAR ESTRELLAS
-========================================== */
+========================================================= */
 
-for(let i = 0; i < 220; i++){
+for(
+    let i = 0;
+    i < 260;
+    i++
+){
 
     const star =
         document.createElement("div");
@@ -764,36 +1660,43 @@ for(let i = 0; i < 220; i++){
     star.className =
         "star";
 
+    const size =
+        1 + Math.random() * 3;
+
+    star.style.width =
+        size + "px";
+
+    star.style.height =
+        size + "px";
+
     star.style.left =
         Math.random() * 100 + "%";
 
     star.style.top =
         Math.random() * 100 + "%";
 
-    star.style.width =
-        (1 + Math.random() * 3) + "px";
-
-    star.style.height =
-        star.style.width;
-
     star.style.animationDelay =
-        Math.random() * 2 + "s";
+        Math.random() * 3 + "s";
 
     stars.appendChild(star);
 }
 
 
-/* ==========================================
-   ESTRELLAS DE GALAXIA
-========================================== */
+/* =========================================================
+   CREAR GALAXIA
+========================================================= */
 
-for(let i = 0; i < 90; i++){
+for(
+    let i = 0;
+    i < 120;
+    i++
+){
 
     const star =
         document.createElement("div");
 
     star.className =
-        "orbitStar";
+        "galaxy-star";
 
     const angle =
         Math.random() *
@@ -801,26 +1704,208 @@ for(let i = 0; i < 90; i++){
 
     const radius =
         70 +
-        Math.random() * 270;
+        Math.random() * 310;
 
-    star.style.left =
+    const x =
         Math.cos(angle) *
-        radius + "px";
+        radius;
 
-    star.style.top =
+    const y =
         Math.sin(angle) *
         radius *
-        .45 + "px";
+        .43;
+
+    star.style.left =
+        x + "px";
+
+    star.style.top =
+        y + "px";
+
+    star.style.opacity =
+        .3 +
+        Math.random() * .7;
 
     galaxy.appendChild(star);
 }
 
 
-/* ==========================================
-   FLORES
-========================================== */
+/* =========================================================
+   CANVAS
+========================================================= */
 
-function createFlower(){
+const ctx =
+    canvas.getContext("2d");
+
+let particles = [];
+
+function resizeCanvas(){
+
+    canvas.width =
+        window.innerWidth *
+        devicePixelRatio;
+
+    canvas.height =
+        window.innerHeight *
+        devicePixelRatio;
+
+    canvas.style.width =
+        window.innerWidth + "px";
+
+    canvas.style.height =
+        window.innerHeight + "px";
+
+    ctx.setTransform(
+        devicePixelRatio,
+        0,
+        0,
+        devicePixelRatio,
+        0,
+        0
+    );
+}
+
+resizeCanvas();
+
+window.addEventListener(
+    "resize",
+    resizeCanvas
+);
+
+
+/* =========================================================
+   PARTÍCULAS
+========================================================= */
+
+function createParticle(
+    x,
+    y
+){
+
+    for(
+        let i = 0;
+        i < 18;
+        i++
+    ){
+
+        const angle =
+            Math.random() *
+            Math.PI * 2;
+
+        const speed =
+            1 +
+            Math.random() * 4;
+
+        particles.push({
+
+            x:x,
+
+            y:y,
+
+            vx:
+                Math.cos(angle) *
+                speed,
+
+            vy:
+                Math.sin(angle) *
+                speed,
+
+            life:1,
+
+            size:
+                1 +
+                Math.random() * 3
+        });
+    }
+}
+
+
+function animateParticles(){
+
+    ctx.clearRect(
+        0,
+        0,
+        window.innerWidth,
+        window.innerHeight
+    );
+
+
+    for(
+        let i = particles.length - 1;
+        i >= 0;
+        i--
+    ){
+
+        const p =
+            particles[i];
+
+
+        p.x += p.vx;
+
+        p.y += p.vy;
+
+        p.vy += .025;
+
+        p.life -= .018;
+
+
+        if(p.life <= 0){
+
+            particles.splice(
+                i,
+                1
+            );
+
+            continue;
+        }
+
+
+        ctx.globalAlpha =
+            p.life;
+
+
+        ctx.fillStyle =
+            "#ffd95c";
+
+
+        ctx.shadowBlur =
+            10;
+
+        ctx.shadowColor =
+            "#fff";
+
+
+        ctx.beginPath();
+
+        ctx.arc(
+            p.x,
+            p.y,
+            p.size,
+            0,
+            Math.PI * 2
+        );
+
+        ctx.fill();
+    }
+
+
+    ctx.globalAlpha = 1;
+
+    requestAnimationFrame(
+        animateParticles
+    );
+}
+
+animateParticles();
+
+
+/* =========================================================
+   FLORES
+========================================================= */
+
+function createFlower(
+    x = null,
+    y = null
+){
 
     const flower =
         document.createElement("div");
@@ -832,18 +1917,23 @@ function createFlower(){
         "🌻";
 
     flower.style.left =
-        (4 + Math.random() * 92) +
-        "%";
+        x === null
+        ? (5 + Math.random() * 90) + "%"
+        : x + "px";
 
     flower.style.top =
-        (20 + Math.random() * 65) +
-        "%";
+        y === null
+        ? (18 + Math.random() * 70) + "%"
+        : y + "px";
 
     flower.style.fontSize =
-        (24 + Math.random() * 35) +
-        "px";
+        (24 + Math.random() * 38)
+        + "px";
 
-    flowers.appendChild(flower);
+    flowers.appendChild(
+        flower
+    );
+
 
     setTimeout(
         () => flower.remove(),
@@ -852,62 +1942,49 @@ function createFlower(){
 }
 
 
-/* ==========================================
-   CORAZONES
-========================================== */
+/* =========================================================
+   LLUVIA DE PÉTALOS
+========================================================= */
 
-function createHearts(){
+function petals(){
 
-    for(let i = 0; i < 20; i++){
+    for(
+        let i = 0;
+        i < 35;
+        i++
+    ){
 
         setTimeout(
             () => {
 
-                const heart =
+                const petal =
                     document.createElement("div");
 
-                heart.textContent =
+                petal.className =
+                    "petal";
+
+                petal.textContent =
                     Math.random() > .5
-                    ? "❤️"
-                    : "💛";
+                    ? "🌻"
+                    : "✨";
 
-                heart.style.position =
-                    "fixed";
+                petal.style.left =
+                    Math.random() * 100
+                    + "%";
 
-                heart.style.bottom =
-                    "-30px";
-
-                heart.style.left =
-                    Math.random() * 100 + "%";
-
-                heart.style.fontSize =
-                    "24px";
-
-                heart.style.zIndex =
-                    "150";
-
-                heart.style.transition =
-                    "transform 4s linear, opacity 4s";
+                petal.style.animationDuration =
+                    (4 + Math.random() * 5)
+                    + "s";
 
                 document.body.appendChild(
-                    heart
+                    petal
                 );
 
-                requestAnimationFrame(
-                    () => {
-
-                        heart.style.transform =
-                            "translateY(-110vh)";
-
-                        heart.style.opacity =
-                            "0";
-
-                    }
-                );
 
                 setTimeout(
-                    () => heart.remove(),
-                    4500
+                    () =>
+                        petal.remove(),
+                    9000
                 );
 
             },
@@ -917,9 +1994,330 @@ function createHearts(){
 }
 
 
-/* ==========================================
+/* =========================================================
+   CORAZONES
+========================================================= */
+
+function hearts(){
+
+    for(
+        let i = 0;
+        i < 30;
+        i++
+    ){
+
+        setTimeout(
+            () => {
+
+                const heart =
+                    document.createElement("div");
+
+                heart.className =
+                    "heart";
+
+                heart.textContent =
+                    Math.random() > .5
+                    ? "❤️"
+                    : "💛";
+
+                heart.style.left =
+                    Math.random() * 100
+                    + "%";
+
+                heart.style.animationDuration =
+                    (3 + Math.random() * 2)
+                    + "s";
+
+                document.body.appendChild(
+                    heart
+                );
+
+
+                setTimeout(
+                    () =>
+                        heart.remove(),
+                    5500
+                );
+
+            },
+            i * 90
+        );
+    }
+}
+
+
+/* =========================================================
+   DESTELLOS
+========================================================= */
+
+function sparks(
+    x,
+    y
+){
+
+    createParticle(
+        x,
+        y
+    );
+
+
+    for(
+        let i = 0;
+        i < 12;
+        i++
+    ){
+
+        const spark =
+            document.createElement("div");
+
+        spark.className =
+            "spark";
+
+        spark.style.left =
+            x + "px";
+
+        spark.style.top =
+            y + "px";
+
+
+        const angle =
+            Math.random() *
+            Math.PI * 2;
+
+        const distance =
+            30 +
+            Math.random() * 100;
+
+
+        spark.style.setProperty(
+            "--x",
+            Math.cos(angle) *
+            distance +
+            "px"
+        );
+
+        spark.style.setProperty(
+            "--y",
+            Math.sin(angle) *
+            distance +
+            "px"
+        );
+
+
+        document.body.appendChild(
+            spark
+        );
+
+
+        setTimeout(
+            () =>
+                spark.remove(),
+            1000
+        );
+    }
+}
+
+
+/* =========================================================
+   ESTRELLA FUGAZ
+========================================================= */
+
+function shootingStar(){
+
+    const star =
+        document.createElement("div");
+
+    star.className =
+        "shooting-star";
+
+    star.style.left =
+        (20 + Math.random() * 90)
+        + "%";
+
+    star.style.top =
+        (5 + Math.random() * 40)
+        + "%";
+
+    document.getElementById(
+        "scene"
+    ).appendChild(star);
+
+
+    requestAnimationFrame(
+        () => {
+
+            star.classList.add(
+                "fly"
+            );
+
+        }
+    );
+
+
+    setTimeout(
+        () =>
+            star.remove(),
+        1600
+    );
+}
+
+
+setInterval(
+    shootingStar,
+    5000
+);
+
+
+/* =========================================================
+   MÚSICA GENERADA
+========================================================= */
+
+function startMusic(){
+
+    try{
+
+        const AudioCtx =
+            window.AudioContext ||
+            window.webkitAudioContext;
+
+        if(!AudioCtx){
+            return;
+        }
+
+
+        if(!audioContext){
+
+            audioContext =
+                new AudioCtx();
+        }
+
+
+        if(
+            audioContext.state ===
+            "suspended"
+        ){
+
+            audioContext.resume();
+        }
+
+
+        if(musicEnabled){
+            return;
+        }
+
+
+        musicEnabled = true;
+
+
+        const notes = [
+
+            261.63,
+            329.63,
+            392.00,
+            329.63,
+
+            293.66,
+            349.23,
+            440.00,
+            349.23
+
+        ];
+
+
+        let index = 0;
+
+
+        function playNote(){
+
+            if(!musicEnabled){
+                return;
+            }
+
+
+            const oscillator =
+                audioContext
+                .createOscillator();
+
+            const gain =
+                audioContext
+                .createGain();
+
+
+            oscillator.type =
+                "sine";
+
+
+            oscillator.frequency.value =
+                notes[
+                    index %
+                    notes.length
+                ];
+
+
+            index++;
+
+
+            gain.gain.setValueAtTime(
+                .0001,
+                audioContext.currentTime
+            );
+
+
+            gain.gain.exponentialRampToValueAtTime(
+                .025,
+                audioContext.currentTime +
+                .08
+            );
+
+
+            gain.gain.exponentialRampToValueAtTime(
+                .0001,
+                audioContext.currentTime +
+                1
+            );
+
+
+            oscillator.connect(
+                gain
+            );
+
+            gain.connect(
+                audioContext.destination
+            );
+
+
+            oscillator.start();
+
+
+            oscillator.stop(
+                audioContext.currentTime +
+                1.1
+            );
+
+
+            setTimeout(
+                playNote,
+                700
+            );
+        }
+
+
+        playNote();
+
+    }
+
+    catch(error){
+
+        console.log(
+            "Audio no disponible"
+        );
+    }
+}
+
+
+/* =========================================================
    INICIAR EXPERIENCIA
-========================================== */
+========================================================= */
 
 function startExperience(){
 
@@ -927,31 +2325,19 @@ function startExperience(){
         return;
     }
 
+
     started = true;
 
 
-    /* OCULTAR PANTALLA */
-
-    start.classList.add(
+    startScreen.classList.add(
         "hide"
     );
 
 
-    /* MOSTRAR TITULO */
-
-    setTimeout(
-        () => {
-
-            intro.classList.add(
-                "show"
-            );
-
-        },
-        300
+    intro.classList.add(
+        "show"
     );
 
-
-    /* MOSTRAR AYUDA */
 
     setTimeout(
         () => {
@@ -961,7 +2347,7 @@ function startExperience(){
             );
 
         },
-        900
+        800
     );
 
 
@@ -973,23 +2359,31 @@ function startExperience(){
             );
 
         },
-        3200
+        3500
     );
 
 
-    /* FLORES */
+    /* MUCHAS FLORES */
 
     for(
         let i = 0;
-        i < 30;
+        i < 40;
         i++
     ){
 
         setTimeout(
             createFlower,
-            1000 + i * 140
+            900 + i * 120
         );
     }
+
+
+    /* PÉTALOS */
+
+    setTimeout(
+        petals,
+        1500
+    );
 
 
     /* SOBRE */
@@ -1002,16 +2396,21 @@ function startExperience(){
             );
 
         },
-        3500
+        4500
     );
+
+
+    /* MÚSICA */
+
+    startMusic();
 }
 
 
-/* ==========================================
-   INICIAR CON CLICK
-========================================== */
+/* =========================================================
+   INICIO — CLICK
+========================================================= */
 
-start.addEventListener(
+startScreen.addEventListener(
     "click",
     function(){
 
@@ -1021,11 +2420,11 @@ start.addEventListener(
 );
 
 
-/* ==========================================
-   INICIAR CON TOUCH
-========================================== */
+/* =========================================================
+   INICIO — TOUCH
+========================================================= */
 
-start.addEventListener(
+startScreen.addEventListener(
     "touchend",
     function(event){
 
@@ -1040,11 +2439,11 @@ start.addEventListener(
 );
 
 
-/* ==========================================
-   INICIAR CON POINTER
-========================================== */
+/* =========================================================
+   INICIO — POINTER
+========================================================= */
 
-start.addEventListener(
+startScreen.addEventListener(
     "pointerup",
     function(){
 
@@ -1054,9 +2453,115 @@ start.addEventListener(
 );
 
 
-/* ==========================================
-   ABRIR SOBRE
-========================================== */
+/* =========================================================
+   TOCAR LA ESCENA
+========================================================= */
+
+document.addEventListener(
+    "pointerdown",
+    function(event){
+
+        if(!started){
+            return;
+        }
+
+
+        if(
+            event.target.closest(
+                "#envelope"
+            )
+        ){
+            return;
+        }
+
+
+        if(
+            event.target.closest(
+                "#continue"
+            )
+        ){
+            return;
+        }
+
+
+        if(
+            event.target.closest(
+                "#music"
+            )
+        ){
+            return;
+        }
+
+
+        sparks(
+            event.clientX,
+            event.clientY
+        );
+
+
+        createFlower(
+            event.clientX,
+            event.clientY
+        );
+
+    }
+);
+
+
+/* =========================================================
+   ABRIR CARTA
+========================================================= */
+
+function openEnvelope(){
+
+    if(opened){
+        return;
+    }
+
+
+    opened = true;
+
+
+    envelope.classList.add(
+        "open"
+    );
+
+
+    hearts();
+
+
+    petals();
+
+
+    flash.classList.add(
+        "active"
+    );
+
+
+    setTimeout(
+        () => {
+
+            flash.classList.remove(
+                "active"
+            );
+
+        },
+        700
+    );
+
+
+    setTimeout(
+        () => {
+
+            continueButton.classList.add(
+                "show"
+            );
+
+        },
+        1400
+    );
+}
+
 
 envelope.addEventListener(
     "click",
@@ -1064,45 +2569,41 @@ envelope.addEventListener(
 
         event.stopPropagation();
 
-        if(opened){
-            return;
-        }
+        openEnvelope();
 
-        opened = true;
-
-        envelope.classList.add(
-            "open"
-        );
-
-        createHearts();
-
-
-        setTimeout(
-            () => {
-
-                continueBtn.classList.add(
-                    "show"
-                );
-
-            },
-            1300
-        );
     }
 );
 
 
-/* ==========================================
-   CONTINUAR
-========================================== */
+envelope.addEventListener(
+    "touchend",
+    function(event){
 
-continueBtn.addEventListener(
+        event.preventDefault();
+
+        event.stopPropagation();
+
+        openEnvelope();
+
+    },
+    {
+        passive:false
+    }
+);
+
+
+/* =========================================================
+   CONTINUAR
+========================================================= */
+
+continueButton.addEventListener(
     "click",
     function(event){
 
         event.stopPropagation();
 
 
-        continueBtn.classList.remove(
+        continueButton.classList.remove(
             "show"
         );
 
@@ -1119,18 +2620,34 @@ continueBtn.addEventListener(
         );
 
 
-        createHearts();
+        hint.classList.remove(
+            "show"
+        );
+
+
+        /* EXPLOSIÓN DE PARTÍCULAS */
+
+        createParticle(
+            window.innerWidth / 2,
+            window.innerHeight / 2
+        );
+
+
+        hearts();
+
+
+        petals();
 
 
         for(
             let i = 0;
-            i < 25;
+            i < 40;
             i++
         ){
 
             setTimeout(
                 createFlower,
-                i * 100
+                i * 80
             );
         }
 
@@ -1145,71 +2662,107 @@ continueBtn.addEventListener(
             },
             1000
         );
+
     }
 );
 
 
-/* ==========================================
-   CREAR FLORES AL TOCAR
-========================================== */
+/* =========================================================
+   FINAL
+========================================================= */
+
+finalScreen.addEventListener(
+    "click",
+    function(){
+
+        finalScreen.classList.remove(
+            "show"
+        );
+
+    }
+);
+
+
+/* =========================================================
+   BOTÓN MÚSICA
+========================================================= */
+
+musicButton.addEventListener(
+    "click",
+    function(event){
+
+        event.stopPropagation();
+
+
+        if(!audioContext){
+
+            startMusic();
+
+            musicButton.textContent =
+                "♫";
+
+            return;
+        }
+
+
+        musicEnabled =
+            !musicEnabled;
+
+
+        if(musicEnabled){
+
+            musicButton.textContent =
+                "♫";
+
+            startMusic();
+
+        }
+
+        else{
+
+            musicButton.textContent =
+                "🔇";
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   MOVER RATÓN
+========================================================= */
 
 document.addEventListener(
-    "pointerdown",
+    "mousemove",
     function(event){
 
         if(!started){
             return;
         }
 
-        if(
-            event.target.closest(
-                "#envelope"
-            )
-        ){
-            return;
-        }
 
         if(
-            event.target.closest(
-                "#continue"
-            )
+            Math.random() < .08
         ){
-            return;
-        }
 
-        if(
-            event.target.closest(
-                "#music"
-            )
-        ){
-            return;
+            createParticle(
+                event.clientX,
+                event.clientY
+            );
         }
-
-        createFlower();
 
     }
 );
 
 
-/* ==========================================
-   BOTÓN MÚSICA
-========================================== */
+/* =========================================================
+   INICIAR ESTRELLAS FUGACES
+========================================================= */
 
-let musicState = false;
-
-music.addEventListener(
-    "click",
-    function(){
-
-        musicState =
-            !musicState;
-
-        music.textContent =
-            musicState
-            ? "🔇"
-            : "♫";
-
-    }
+setTimeout(
+    shootingStar,
+    2500
 );
 
 </script>
