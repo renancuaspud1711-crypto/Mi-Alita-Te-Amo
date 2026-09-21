@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
 <meta charset="UTF-8">
 
 <meta name="viewport"
-      content="width=device-width,
-      initial-scale=1.0,
-      maximum-scale=1.0,
-      user-scalable=no">
+content="width=device-width,
+initial-scale=1.0,
+maximum-scale=1.0,
+user-scalable=no">
 
 <title>Para mi princesa 🌻</title>
+
 
 <style>
 
@@ -17,55 +20,58 @@
    CONFIGURACIÓN GENERAL
 ===================================================== */
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
 html,
-body {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    background: #020008;
-    font-family: Georgia, serif;
+body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:#020008;
+    font-family:Georgia,serif;
 }
 
-body {
-    touch-action: manipulation;
+body{
+    touch-action:manipulation;
 }
 
 
 /* =====================================================
-   ESCENA PRINCIPAL
+   UNIVERSO
 ===================================================== */
 
-#scene {
-    position: fixed;
-    inset: 0;
-    overflow: hidden;
+#scene{
+
+    position:fixed;
+    inset:0;
+
+    overflow:hidden;
 
     background:
-        radial-gradient(
-            circle at 50% 48%,
-            rgba(91, 28, 150, .28),
-            transparent 32%
-        ),
 
-        radial-gradient(
-            circle at 18% 25%,
-            rgba(30, 80, 190, .20),
-            transparent 28%
-        ),
+    radial-gradient(
+        circle at 50% 48%,
+        rgba(110,30,180,.30),
+        transparent 32%
+    ),
 
-        radial-gradient(
-            circle at 82% 72%,
-            rgba(205, 45, 145, .18),
-            transparent 30%
-        ),
+    radial-gradient(
+        circle at 15% 25%,
+        rgba(30,80,190,.22),
+        transparent 30%
+    ),
 
-        #020008;
+    radial-gradient(
+        circle at 85% 75%,
+        rgba(210,40,150,.20),
+        transparent 30%
+    ),
+
+    #020008;
 }
 
 
@@ -73,36 +79,39 @@ body {
    ESTRELLAS
 ===================================================== */
 
-#stars {
-    position: absolute;
-    inset: 0;
+#stars{
+
+    position:absolute;
+    inset:0;
 }
 
-.star {
+.star{
 
-    position: absolute;
+    position:absolute;
 
-    border-radius: 50%;
+    border-radius:50%;
 
-    background: white;
+    background:white;
 
     box-shadow:
-        0 0 8px white;
+    0 0 6px white;
 
     animation:
-        twinkle 2s ease-in-out infinite alternate;
+    twinkle 2s
+    infinite
+    alternate;
 }
 
-@keyframes twinkle {
+@keyframes twinkle{
 
-    from {
-        opacity: .15;
-        transform: scale(.55);
+    from{
+        opacity:.15;
+        transform:scale(.5);
     }
 
-    to {
-        opacity: 1;
-        transform: scale(1.4);
+    to{
+        opacity:1;
+        transform:scale(1.4);
     }
 }
 
@@ -111,47 +120,48 @@ body {
    NEBULOSA
 ===================================================== */
 
-.nebula {
+.nebula{
 
-    position: absolute;
+    position:absolute;
 
-    width: 85vmax;
-    height: 65vmax;
+    width:90vmax;
+    height:70vmax;
 
-    left: 50%;
-    top: 50%;
+    left:50%;
+    top:50%;
 
     transform:
-        translate(-50%, -50%);
+    translate(-50%,-50%);
 
-    border-radius: 50%;
+    border-radius:50%;
 
     background:
-        radial-gradient(
-            ellipse,
-            rgba(255, 80, 190, .16),
-            rgba(75, 40, 220, .12),
-            transparent 68%
-        );
 
-    filter: blur(35px);
+    radial-gradient(
+        ellipse,
+        rgba(255,70,190,.18),
+        rgba(70,30,220,.15),
+        transparent 70%
+    );
+
+    filter:blur(35px);
 
     animation:
-        nebulaMove
-        12s
-        ease-in-out
-        infinite
-        alternate;
+    nebulaMove
+    12s
+    ease-in-out
+    infinite
+    alternate;
 }
 
-@keyframes nebulaMove {
+@keyframes nebulaMove{
 
-    to {
+    to{
 
         transform:
-            translate(-50%, -50%)
-            rotate(12deg)
-            scale(1.2);
+        translate(-50%,-50%)
+        rotate(15deg)
+        scale(1.2);
     }
 }
 
@@ -160,49 +170,49 @@ body {
    GALAXIA
 ===================================================== */
 
-#galaxy {
+#galaxy{
 
-    position: absolute;
+    position:absolute;
 
-    left: 50%;
-    top: 50%;
+    left:50%;
+    top:50%;
 
-    width: 2px;
-    height: 2px;
+    width:2px;
+    height:2px;
 
     transform:
-        translate(-50%, -50%);
+    translate(-50%,-50%);
 
     animation:
-        galaxySpin
-        18s
-        linear
-        infinite;
+    galaxyRotate
+    20s
+    linear
+    infinite;
 }
 
-@keyframes galaxySpin {
+@keyframes galaxyRotate{
 
-    to {
+    to{
 
         transform:
-            translate(-50%, -50%)
-            rotate(360deg);
+        translate(-50%,-50%)
+        rotate(360deg);
     }
 }
 
-.orbitStar {
+.orbitStar{
 
-    position: absolute;
+    position:absolute;
 
-    width: 3px;
-    height: 3px;
+    width:3px;
+    height:3px;
 
-    background: #ffeeb0;
+    border-radius:50%;
 
-    border-radius: 50%;
+    background:#ffeeb0;
 
     box-shadow:
-        0 0 8px #ffd45a;
+    0 0 8px #ffd45a;
 }
 
 
@@ -210,143 +220,138 @@ body {
    AGUJERO NEGRO
 ===================================================== */
 
-.blackhole {
+.blackhole{
 
-    position: absolute;
+    position:absolute;
 
-    left: 50%;
-    top: 50%;
+    left:50%;
+    top:50%;
 
-    width: 125px;
-    height: 125px;
+    width:125px;
+    height:125px;
 
     transform:
-        translate(-50%, -50%);
+    translate(-50%,-50%);
 
-    border-radius: 50%;
+    border-radius:50%;
 
-    background: #000;
+    background:#000;
 
-    z-index: 4;
+    z-index:4;
 
     box-shadow:
 
-        0 0 24px #ffc94d,
+    0 0 25px #ffd04d,
 
-        0 0 65px #ff7500,
+    0 0 65px #ff7200,
 
-        0 0 110px
-        rgba(255, 100, 0, .35);
+    0 0 110px
+    rgba(255,100,0,.4);
 }
 
-.blackhole::before {
+.blackhole::before{
 
-    content: "";
+    content:"";
 
-    position: absolute;
+    position:absolute;
 
-    inset: -31px;
+    inset:-32px;
 
-    border-radius: 50%;
+    border-radius:50%;
 
-    border: 7px solid transparent;
+    border:7px solid transparent;
 
-    border-top-color: #ffe36b;
+    border-top-color:#ffe56b;
 
-    border-right-color: #ff7200;
+    border-right-color:#ff7200;
 
     animation:
-        spin
-        2s
-        linear
-        infinite;
+    spin 2s
+    linear
+    infinite;
 }
 
-.blackhole::after {
+.blackhole::after{
 
-    content: "";
+    content:"";
 
-    position: absolute;
+    position:absolute;
 
-    inset: -50px;
+    inset:-52px;
 
-    border-radius: 50%;
+    border-radius:50%;
 
-    border: 7px solid transparent;
+    border:5px solid transparent;
 
-    border-bottom-color: #ffd85a;
+    border-bottom-color:#ffd65a;
 
-    border-left-color:
-        rgba(255, 120, 0, .7);
+    border-left-color:#ff7700;
 
     animation:
-        spin
-        4s
-        linear
-        infinite reverse;
+    spin 4s
+    linear
+    infinite reverse;
 }
 
-@keyframes spin {
+@keyframes spin{
 
-    to {
-
-        transform:
-            rotate(360deg);
+    to{
+        transform:rotate(360deg);
     }
 }
 
 
 /* =====================================================
-   FLORES FLOTANDO
+   FLORES FLOTANTES
 ===================================================== */
 
-#flowers {
+#flowers{
 
-    position: absolute;
+    position:absolute;
 
-    inset: 0;
+    inset:0;
 
-    z-index: 7;
+    z-index:8;
 
-    pointer-events: none;
+    pointer-events:none;
 }
 
-.flower {
+.flower{
 
-    position: absolute;
+    position:absolute;
+
+    opacity:0;
 
     transform:
-        translateY(45px)
-        scale(.15);
-
-    opacity: 0;
+    translateY(50px)
+    scale(.1);
 
     animation:
-        grow
-        1.8s
-        cubic-bezier(.2,.8,.2,1)
-        forwards;
+    flowerGrow
+    1.8s
+    cubic-bezier(.2,.8,.2,1)
+    forwards;
 
     filter:
-        drop-shadow(
-            0 0 9px
-            rgba(255,220,50,.7)
-        );
+    drop-shadow(
+        0 0 9px
+        rgba(255,220,50,.8)
+    );
 }
 
-@keyframes grow {
+@keyframes flowerGrow{
 
-    60% {
-        opacity: 1;
+    60%{
+        opacity:1;
     }
 
-    to {
+    100%{
 
-        opacity: 1;
+        opacity:1;
 
         transform:
-            translateY(0)
-            scale(1);
+        translateY(0)
+        scale(1);
     }
 }
 
@@ -355,90 +360,88 @@ body {
    FLORES DEL SUELO
 ===================================================== */
 
-#groundFlowers {
+#groundFlowers{
 
-    position: absolute;
+    position:absolute;
 
-    bottom: -3px;
+    left:0;
+    bottom:0;
 
-    left: 0;
+    width:100%;
+    height:23%;
 
-    width: 100%;
+    z-index:7;
 
-    height: 22%;
-
-    z-index: 6;
-
-    pointer-events: none;
+    pointer-events:none;
 }
 
-.stem {
+.stem{
 
-    position: absolute;
+    position:absolute;
 
-    bottom: 0;
+    bottom:0;
 
-    width: 4px;
-
-    border-radius:
-        5px 5px 0 0;
+    width:4px;
 
     background:
-        linear-gradient(
-            #4c9b42,
-            #173d24
-        );
+    linear-gradient(
+        #54a84b,
+        #173b22
+    );
 
-    transform-origin: bottom;
+    border-radius:
+    5px 5px 0 0;
+
+    transform-origin:bottom;
 
     animation:
-        stemGrow
-        2s
-        ease-out
-        forwards;
+    stemGrow
+    2s
+    ease-out
+    forwards;
 }
 
-@keyframes stemGrow {
+@keyframes stemGrow{
 
-    from {
-        height: 0;
+    from{
+        height:0;
     }
 
-    to {
-        height: var(--h);
+    to{
+        height:var(--h);
     }
 }
 
-.gflower {
+.gflower{
 
-    position: absolute;
+    position:absolute;
 
-    bottom: var(--h);
+    bottom:var(--h);
 
     transform:
-        translate(-50%, 50%)
-        scale(0);
+    translate(-50%,50%)
+    scale(0);
 
     animation:
-        flowerOpen
-        1.3s
-        .8s
-        ease-out
-        forwards;
+    flowerOpen
+    1.3s
+    .8s
+    ease-out
+    forwards;
 
     filter:
-        drop-shadow(
-            0 0 8px #ffd83d
-        );
+    drop-shadow(
+        0 0 8px #ffd83d
+    );
 }
 
-@keyframes flowerOpen {
+@keyframes flowerOpen{
 
-    to {
+    to{
 
         transform:
-            translate(-50%, 50%)
-            scale(1);
+        translate(-50%,50%)
+        scale(1);
     }
 }
 
@@ -447,149 +450,170 @@ body {
    PANTALLA INICIAL
 ===================================================== */
 
-#start {
+#start{
 
-    position: fixed;
+    position:fixed;
 
-    inset: 0;
+    inset:0;
 
-    z-index: 100;
+    z-index:100;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    color:white;
 
     background:
-        radial-gradient(
-            circle,
-            rgba(44, 9, 77, .92),
-            rgba(0, 0, 7, .99)
-        );
 
-    display: flex;
+    radial-gradient(
+        circle,
+        rgba(45,10,80,.95),
+        rgba(0,0,8,.99)
+    );
 
-    flex-direction: column;
-
-    align-items: center;
-
-    justify-content: center;
-
-    color: white;
-
-    transition: 1.2s;
+    transition:
+    opacity 1.2s ease;
 }
 
-#start.hide {
+#start.hide{
 
-    opacity: 0;
+    opacity:0;
 
-    pointer-events: none;
+    pointer-events:none;
 }
 
-.startFlower {
+.startFlower{
 
-    font-size: 92px;
+    font-size:95px;
 
     filter:
-        drop-shadow(
-            0 0 22px #ffd83d
-        );
+    drop-shadow(
+        0 0 25px #ffd83d
+    );
 
     animation:
-        pulse
-        2s
-        infinite;
+    flowerPulse
+    2s
+    infinite;
 }
 
-@keyframes pulse {
+@keyframes flowerPulse{
 
-    50% {
-        transform: scale(1.13);
+    0%,
+    100%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.15);
     }
 }
 
-#start h1 {
+#start h1{
+
+    margin-top:20px;
+
+    width:90%;
 
     font-size:
-        clamp(24px, 7vw, 42px);
-
-    margin-top: 22px;
-
-    text-align: center;
+    clamp(
+        24px,
+        7vw,
+        42px
+    );
 
     text-shadow:
-        0 0 18px #dca7ff;
+    0 0 18px #dca7ff;
 }
 
-#start p {
+#start p{
 
-    margin-top: 14px;
+    margin-top:18px;
 
-    font-size: 17px;
+    font-size:18px;
 
-    letter-spacing: 2px;
+    letter-spacing:2px;
 
-    opacity: .75;
+    opacity:.7;
 
     animation:
-        fadeText
-        1.8s
-        infinite
-        alternate;
+    startText
+    1.8s
+    infinite
+    alternate;
 }
 
-@keyframes fadeText {
+@keyframes startText{
 
-    to {
-        opacity: 1;
+    to{
+        opacity:1;
     }
 }
 
 
 /* =====================================================
-   INTRODUCCIÓN
+   MENSAJE PRINCIPAL
 ===================================================== */
 
-#intro {
+#intro{
 
-    position: absolute;
+    position:absolute;
 
-    z-index: 20;
+    z-index:20;
 
-    top: 10%;
+    top:8%;
 
-    left: 50%;
+    left:50%;
 
-    width: 92%;
+    width:94%;
 
     transform:
-        translateX(-50%);
+    translateX(-50%);
 
-    text-align: center;
+    color:white;
 
-    color: white;
+    text-align:center;
 
-    opacity: 0;
+    opacity:0;
 
-    transition: 2s;
+    transition:
+    opacity 2s;
 
     text-shadow:
-        0 0 14px white;
+    0 0 12px white;
 }
 
-#intro.show {
-
-    opacity: 1;
+#intro.show{
+    opacity:1;
 }
 
-#intro h2 {
+#intro h2{
 
     font-size:
-        clamp(27px, 8vw, 52px);
+    clamp(
+        27px,
+        8vw,
+        52px
+    );
 }
 
-#intro p {
+#intro p{
+
+    margin-top:10px;
 
     font-size:
-        clamp(15px, 4vw, 20px);
-
-    margin-top: 10px;
+    clamp(
+        15px,
+        4vw,
+        20px
+    );
 }
 
 
@@ -597,35 +621,34 @@ body {
    TEXTO DE AYUDA
 ===================================================== */
 
-#hint {
+#hint{
 
-    position: absolute;
+    position:absolute;
 
-    z-index: 20;
+    z-index:20;
 
-    bottom: 10%;
+    bottom:10%;
 
-    left: 50%;
+    left:50%;
+
+    width:90%;
 
     transform:
-        translateX(-50%);
+    translateX(-50%);
 
-    color: white;
+    color:white;
 
-    opacity: 0;
+    text-align:center;
 
-    transition: 1s;
+    opacity:0;
 
-    text-align: center;
+    transition:1s;
 
-    width: 90%;
-
-    font-size: 16px;
+    font-size:16px;
 }
 
-#hint.show {
-
-    opacity: .85;
+#hint.show{
+    opacity:.9;
 }
 
 
@@ -633,215 +656,215 @@ body {
    SOBRE
 ===================================================== */
 
-#envelopeWrap {
+#envelopeWrap{
 
-    position: absolute;
+    position:absolute;
 
-    z-index: 40;
+    z-index:40;
 
-    left: 50%;
-
-    top: 55%;
-
-    transform:
-        translate(-50%, -50%)
-        scale(.1);
-
-    opacity: 0;
-
-    pointer-events: none;
-
-    transition: 1s;
-}
-
-#envelopeWrap.show {
+    left:50%;
+    top:55%;
 
     transform:
-        translate(-50%, -50%)
-        scale(1);
+    translate(-50%,-50%)
+    scale(.1);
 
-    opacity: 1;
+    opacity:0;
 
-    pointer-events: auto;
+    pointer-events:none;
+
+    transition:1s;
 }
 
-.envelope {
+#envelopeWrap.show{
 
-    position: relative;
+    transform:
+    translate(-50%,-50%)
+    scale(1);
+
+    opacity:1;
+
+    pointer-events:auto;
+}
+
+.envelope{
+
+    position:relative;
 
     width:
-        min(330px, 82vw);
+    min(
+        330px,
+        82vw
+    );
 
-    height: 220px;
+    height:220px;
 
-    cursor: pointer;
+    cursor:pointer;
 
     filter:
-        drop-shadow(
-            0 15px 25px
-            rgba(0,0,0,.6)
-        );
+    drop-shadow(
+        0 15px 25px
+        rgba(0,0,0,.6)
+    );
 }
 
-.envBack {
+.envBack{
 
-    position: absolute;
+    position:absolute;
 
-    inset: 0;
+    inset:0;
 
-    background: #e8bf66;
+    border-radius:8px;
 
-    border-radius: 7px;
-
-    box-shadow:
-        0 0 20px
-        rgba(255,210,90,.25);
+    background:#e8bf66;
 }
 
-.envFront {
+.envFront{
 
-    position: absolute;
+    position:absolute;
 
-    left: 0;
-    right: 0;
-    bottom: 0;
+    left:0;
+    right:0;
+    bottom:0;
 
-    height: 70%;
+    height:70%;
 
-    background: #f4d487;
+    background:#f4d487;
 
     clip-path:
-        polygon(
-            0 0,
-            50% 55%,
-            100% 0,
-            100% 100%,
-            0 100%
-        );
+    polygon(
+        0 0,
+        50% 55%,
+        100% 0,
+        100% 100%,
+        0 100%
+    );
 
-    z-index: 3;
+    z-index:3;
 }
 
-.flap {
+.flap{
 
-    position: absolute;
+    position:absolute;
 
-    left: 0;
+    left:0;
+    top:0;
 
-    top: 0;
+    width:100%;
+    height:62%;
 
-    width: 100%;
-
-    height: 62%;
-
-    background: #f8db8e;
+    background:#f8db8e;
 
     clip-path:
-        polygon(
-            0 0,
-            100% 0,
-            50% 100%
-        );
+    polygon(
+        0 0,
+        100% 0,
+        50% 100%
+    );
 
-    transform-origin: top;
+    transform-origin:top;
 
-    transition: 1s;
+    transition:1s;
 
-    z-index: 4;
+    z-index:4;
 }
 
-.envelope.open .flap {
+.envelope.open .flap{
 
     transform:
-        rotateX(180deg);
+    rotateX(180deg);
 
-    z-index: 1;
-}
-
-.seal {
-
-    position: absolute;
-
-    z-index: 5;
-
-    left: 50%;
-
-    top: 48%;
-
-    transform:
-        translate(-50%, -50%);
-
-    font-size: 42px;
-
-    transition: .5s;
-}
-
-.envelope.open .seal {
-
-    opacity: 0;
+    z-index:1;
 }
 
 
 /* =====================================================
-   CARTA DENTRO DEL SOBRE
+   SELLO
 ===================================================== */
 
-.letter {
+.seal{
 
-    position: absolute;
+    position:absolute;
 
-    left: 5%;
+    left:50%;
+    top:48%;
 
-    width: 90%;
+    transform:
+    translate(-50%,-50%);
 
-    bottom: 8px;
+    z-index:5;
 
-    min-height: 185px;
+    font-size:42px;
 
-    padding: 25px 18px;
+    transition:.5s;
+}
 
-    background: #fff8df;
+.envelope.open .seal{
 
-    color: #5c411b;
+    opacity:0;
+}
 
-    border-radius: 5px;
 
-    text-align: center;
+/* =====================================================
+   CARTA
+===================================================== */
+
+.letter{
+
+    position:absolute;
+
+    left:5%;
+
+    width:90%;
+
+    bottom:8px;
+
+    min-height:185px;
+
+    padding:25px 18px;
+
+    background:#fff8df;
+
+    color:#5c411b;
+
+    border-radius:5px;
+
+    text-align:center;
 
     box-shadow:
-        0 4px 15px
-        rgba(0,0,0,.25);
+    0 4px 15px
+    rgba(0,0,0,.25);
 
     transform:
-        translateY(0);
+    translateY(0);
 
-    transition: 1.2s;
+    transition:1.2s;
 
-    z-index: 2;
+    z-index:2;
 }
 
-.envelope.open .letter {
+.envelope.open .letter{
 
     transform:
-        translateY(-135px);
+    translateY(-135px);
 
-    z-index: 6;
+    z-index:6;
 }
 
-.letter h3 {
+.letter h3{
 
-    font-size: 23px;
+    font-size:23px;
 
-    margin-bottom: 13px;
+    color:#8a5918;
 
-    color: #8a5918;
+    margin-bottom:14px;
 }
 
-.letter p {
+.letter p{
 
-    font-size: 15px;
+    font-size:16px;
 
-    line-height: 1.55;
+    line-height:1.6;
 }
 
 
@@ -849,157 +872,165 @@ body {
    BOTÓN CONTINUAR
 ===================================================== */
 
-#continue {
+#continue{
 
-    position: absolute;
+    position:absolute;
 
-    z-index: 70;
+    z-index:70;
 
-    bottom: 7%;
-
-    left: 50%;
+    left:50%;
+    bottom:7%;
 
     transform:
-        translateX(-50%);
+    translateX(-50%);
 
     padding:
-        12px 24px;
+    12px 25px;
 
-    border: 0;
+    border:none;
 
-    border-radius: 30px;
+    border-radius:30px;
 
     background:
-        #ffd14d;
+    linear-gradient(
+        135deg,
+        #ffe05c,
+        #ffad20
+    );
 
-    color:
-        #4b2e00;
+    color:#4b2e00;
 
-    font-weight: bold;
+    font-size:16px;
 
-    font-size: 16px;
+    font-weight:bold;
 
-    opacity: 0;
+    opacity:0;
 
-    pointer-events: none;
+    pointer-events:none;
 
-    transition: .7s;
+    transition:.7s;
 
     box-shadow:
-        0 0 20px
-        rgba(255,210,70,.55);
+    0 0 20px
+    rgba(255,210,70,.6);
 }
 
-#continue.show {
+#continue.show{
 
-    opacity: 1;
+    opacity:1;
 
-    pointer-events: auto;
+    pointer-events:auto;
 }
 
 
 /* =====================================================
-   PANTALLA FINAL
+   FINAL
 ===================================================== */
 
-#final {
+#final{
 
-    position: absolute;
+    position:absolute;
 
-    inset: 0;
+    inset:0;
 
-    z-index: 80;
+    z-index:80;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:30px;
+
+    text-align:center;
+
+    color:white;
 
     background:
-        radial-gradient(
-            circle,
-            rgba(30,7,50,.6),
-            rgba(0,0,5,.93)
-        );
 
-    display: flex;
+    radial-gradient(
+        circle,
+        rgba(40,8,65,.65),
+        rgba(0,0,5,.95)
+    );
 
-    align-items: center;
+    opacity:0;
 
-    justify-content: center;
+    pointer-events:none;
 
-    text-align: center;
-
-    padding: 30px;
-
-    color: white;
-
-    opacity: 0;
-
-    pointer-events: none;
-
-    transition: 1.5s;
+    transition:
+    opacity 1.5s;
 }
 
-#final.show {
+#final.show{
 
-    opacity: 1;
+    opacity:1;
 
-    pointer-events: auto;
+    pointer-events:auto;
 }
 
-.finalBox {
+.finalBox{
 
-    max-width: 620px;
+    max-width:620px;
 }
 
-.finalBox h2 {
+.finalBox h2{
 
     font-size:
-        clamp(32px, 9vw, 60px);
+    clamp(
+        32px,
+        9vw,
+        60px
+    );
 
     text-shadow:
-        0 0 18px #ffd45a;
+    0 0 18px #ffd45a;
 }
 
-.finalBox p {
+.finalBox p{
+
+    margin-top:18px;
 
     font-size:
-        clamp(17px, 4.5vw, 24px);
+    clamp(
+        17px,
+        4.5vw,
+        24px
+    );
 
-    line-height: 1.7;
-
-    margin-top: 18px;
+    line-height:1.7;
 }
 
 
 /* =====================================================
-   BOTÓN DE MÚSICA
+   BOTÓN MÚSICA
 ===================================================== */
 
-#music {
+#music{
 
-    position: fixed;
+    position:fixed;
 
-    z-index: 90;
+    right:14px;
+    top:14px;
 
-    right: 14px;
+    z-index:200;
 
-    top: 14px;
+    width:43px;
+    height:43px;
 
-    width: 42px;
-
-    height: 42px;
+    border-radius:50%;
 
     border:
-        1px solid
-        rgba(255,255,255,.4);
-
-    border-radius: 50%;
+    1px solid
+    rgba(255,255,255,.4);
 
     background:
-        rgba(0,0,0,.35);
+    rgba(0,0,0,.4);
 
-    color: white;
+    color:white;
 
-    font-size: 18px;
-
-    opacity: .7;
+    font-size:18px;
 }
 
 
@@ -1007,44 +1038,43 @@ body {
    PARTÍCULAS
 ===================================================== */
 
-.particle {
+.particle{
 
-    position: fixed;
+    position:fixed;
 
-    z-index: 60;
+    width:6px;
+    height:6px;
 
-    width: 6px;
+    border-radius:50%;
 
-    height: 6px;
-
-    border-radius: 50%;
-
-    background: #ffd95a;
+    background:#ffd95a;
 
     box-shadow:
-        0 0 10px white;
+    0 0 10px white;
 
-    pointer-events: none;
+    pointer-events:none;
+
+    z-index:150;
 
     animation:
-        particle
-        900ms
-        ease-out
-        forwards;
+    particleMove
+    900ms
+    ease-out
+    forwards;
 }
 
-@keyframes particle {
+@keyframes particleMove{
 
-    to {
+    to{
 
         transform:
-            translate(
-                var(--x),
-                var(--y)
-            )
-            scale(0);
+        translate(
+            var(--x),
+            var(--y)
+        )
+        scale(0);
 
-        opacity: 0;
+        opacity:0;
     }
 }
 
@@ -1053,36 +1083,39 @@ body {
    CORAZONES
 ===================================================== */
 
-.heart {
+.heart{
 
-    position: fixed;
+    position:fixed;
 
-    z-index: 65;
+    bottom:-30px;
 
-    pointer-events: none;
+    z-index:160;
 
-    font-size: 20px;
+    font-size:22px;
+
+    pointer-events:none;
 
     animation:
-        heart
-        3.5s
-        linear
-        forwards;
+    heartMove
+    3.5s
+    linear
+    forwards;
 }
 
-@keyframes heart {
+@keyframes heartMove{
 
-    to {
+    to{
 
         transform:
-            translateY(-100vh)
-            scale(1.5);
+        translateY(-110vh)
+        scale(1.5);
 
-        opacity: 0;
+        opacity:0;
     }
 }
 
 </style>
+
 </head>
 
 
@@ -1090,7 +1123,7 @@ body {
 
 
 <!-- =====================================================
-     ESCENA
+     UNIVERSO
 ===================================================== -->
 
 <div id="scene">
@@ -1108,7 +1141,9 @@ body {
     <div id="groundFlowers"></div>
 
 
-    <!-- INTRODUCCIÓN -->
+    <!-- =================================================
+         TEXTO
+    ================================================== -->
 
     <div id="intro">
 
@@ -1124,12 +1159,10 @@ body {
     </div>
 
 
-    <!-- INDICACIÓN -->
-
     <div id="hint">
 
         ✨ Toca la pantalla para
-        hacer aparecer estrellas ✨
+        hacer aparecer flores ✨
 
     </div>
 
@@ -1171,7 +1204,7 @@ body {
             </div>
 
 
-            <!-- TAPA -->
+            <!-- TAPA DEL SOBRE -->
 
             <div class="flap"></div>
 
@@ -1192,12 +1225,12 @@ body {
     </div>
 
 
-    <!-- BOTÓN CONTINUAR -->
+    <!-- =================================================
+         CONTINUAR
+    ================================================== -->
 
     <button id="continue">
-
         ✨ Continuar ✨
-
     </button>
 
 
@@ -1218,7 +1251,8 @@ body {
                 Espero que podamos seguir
                 creando muchos recuerdos,
                 viviendo momentos bonitos
-                y compartiendo sonrisas juntos. ❤️
+                y compartiendo sonrisas
+                juntos. ❤️
 
             </p>
 
@@ -1250,12 +1284,11 @@ body {
 </div>
 
 
-<!-- BOTÓN MÚSICA -->
+<!-- =====================================================
+     MÚSICA
+===================================================== -->
 
-<button
-    id="music"
-    aria-label="Música"
->
+<button id="music">
     ♫
 </button>
 
@@ -1266,41 +1299,41 @@ body {
    ELEMENTOS
 ===================================================== */
 
-const stars =
-    document.getElementById("stars");
-
-const galaxy =
-    document.getElementById("galaxy");
-
-const flowers =
-    document.getElementById("flowers");
-
-const ground =
-    document.getElementById("groundFlowers");
-
 const start =
-    document.getElementById("start");
+document.getElementById("start");
 
 const intro =
-    document.getElementById("intro");
+document.getElementById("intro");
 
 const hint =
-    document.getElementById("hint");
+document.getElementById("hint");
 
 const envelopeWrap =
-    document.getElementById("envelopeWrap");
+document.getElementById("envelopeWrap");
 
 const envelope =
-    document.getElementById("envelope");
+document.getElementById("envelope");
 
 const continueBtn =
-    document.getElementById("continue");
+document.getElementById("continue");
 
 const finalScreen =
-    document.getElementById("final");
+document.getElementById("final");
 
 const musicBtn =
-    document.getElementById("music");
+document.getElementById("music");
+
+const stars =
+document.getElementById("stars");
+
+const galaxy =
+document.getElementById("galaxy");
+
+const flowers =
+document.getElementById("flowers");
+
+const ground =
+document.getElementById("groundFlowers");
 
 
 /* =====================================================
@@ -1309,94 +1342,113 @@ const musicBtn =
 
 let started = false;
 
+let stage = 0;
+
 let audioCtx = null;
 
 let musicOn = false;
-
-let stage = 0;
 
 
 /* =====================================================
    CREAR ESTRELLAS
 ===================================================== */
 
-for (
-    let i = 0;
-    i < 220;
-    i++
-) {
+for(let i=0;i<220;i++){
 
     const star =
-        document.createElement("i");
+    document.createElement("div");
 
     star.className =
-        "star";
+    "star";
 
     const size =
-        Math.random() * 3 + 1;
+    Math.random()*3+1;
 
     star.style.width =
-        size + "px";
+    size+"px";
 
     star.style.height =
-        size + "px";
+    size+"px";
 
     star.style.left =
-        Math.random() * 100 + "%";
+    Math.random()*100+"%";
 
     star.style.top =
-        Math.random() * 100 + "%";
+    Math.random()*100+"%";
 
     star.style.animationDelay =
-        Math.random() * 3 + "s";
+    Math.random()*3+"s";
 
     stars.appendChild(star);
 }
 
 
 /* =====================================================
-   ESTRELLAS ORBITALES
+   ESTRELLAS DE LA GALAXIA
 ===================================================== */
 
-for (
-    let i = 0;
-    i < 75;
-    i++
-) {
+for(let i=0;i<80;i++){
 
     const star =
-        document.createElement("i");
+    document.createElement("div");
 
     star.className =
-        "orbitStar";
+    "orbitStar";
 
     const angle =
-        Math.random() *
-        Math.PI *
-        2;
+    Math.random()*Math.PI*2;
 
     const radius =
-        70 +
-        Math.random() *
-        260;
+    70+Math.random()*270;
 
     star.style.left =
-        Math.cos(angle) *
-        radius +
-        "px";
+    Math.cos(angle)*radius+"px";
 
     star.style.top =
-        Math.sin(angle) *
-        radius *
-        .45 +
-        "px";
+    Math.sin(angle)*radius*.45+"px";
 
     star.style.opacity =
-        .25 +
-        Math.random() *
-        .75;
+    .3+Math.random()*.7;
 
     galaxy.appendChild(star);
+}
+
+
+/* =====================================================
+   CREAR FLORES
+===================================================== */
+
+function createFlower(){
+
+    const flower =
+    document.createElement("div");
+
+    flower.className =
+    "flower";
+
+    flower.textContent =
+    "🌻";
+
+    flower.style.left =
+    (4+Math.random()*92)+"%";
+
+    flower.style.top =
+    (20+Math.random()*65)+"%";
+
+    flower.style.fontSize =
+    (24+Math.random()*35)+"px";
+
+    flowers.appendChild(flower);
+
+
+    setTimeout(
+        function(){
+
+            flower.remove();
+
+        },
+        9000
+    );
 }
 
 
@@ -1404,54 +1456,51 @@ for (
    FLORES DEL SUELO
 ===================================================== */
 
-function makeGroundFlowers() {
+function createGroundFlowers(){
 
-    for (
-        let i = 0;
-        i < 24;
-        i++
-    ) {
+    for(let i=0;i<25;i++){
 
         const height =
-            45 +
-            Math.random() *
-            120;
+        40+Math.random()*120;
 
-
-        /* TALLO */
 
         const stem =
-            document.createElement("div");
+        document.createElement("div");
 
         stem.className =
-            "stem";
+        "stem";
 
         stem.style.setProperty(
             "--h",
-            height + "px"
+            height+"px"
         );
 
         stem.style.left =
-            Math.random() *
-            100 +
-            "%";
+        Math.random()*100+"%";
 
         ground.appendChild(stem);
 
 
-        /* FLOR */
-
         const flower =
-            document.createElement("div");
+        document.createElement("div");
 
         flower.className =
-            "gflower";
+        "gflower";
 
         flower.textContent =
-            "🌻";
+        "🌻";
 
         flower.style.setProperty(
             "--h",
-            height + "px"
-        )
-    
+            height+"px"
+        );
+
+        flower.style.left =
+        stem.style.left;
+
+        flower.style.fontSize =
+        (20+Math.random()*25)+"px";
+
+        ground.appendChild(flower);
+    }
+}
